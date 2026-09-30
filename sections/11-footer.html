@@ -1,0 +1,45 @@
+<!--
+  ============================================================
+  11 · FOOTER + STICKY MOBILE CTA + smooth scrolling
+  Swap the logo src for your GHL media URL of assets/logo-stacked-white.png
+  and set the Privacy Policy link.
+  ============================================================
+-->
+<div class="nbs">
+  <footer class="nbs-footer">
+    <div class="nbs-wrap">
+      <img src="assets/logo-stacked-white.png" alt="North Bound Surfacing" width="800" height="498" loading="lazy">
+      <p>Resin &amp; Tarmac Driveways · Block Paving · Porcelain · Artificial Turf</p>
+      <p>Covering Greater Manchester &amp; Cheshire</p>
+      <p>© <span id="nbs-year">2026</span> North Bound Surfacing · <a href="#" target="_blank" rel="noopener">Privacy Policy</a></p>
+    </div>
+  </footer>
+  <div class="nbs-sticky" id="nbs-sticky">
+    <a class="nbs-btn" href="#nbs-quiz">Get My Free Quote + 10% Off →</a>
+  </div>
+</div>
+<script>
+(function () {
+  var y = document.getElementById('nbs-year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // Smooth-scroll every "#nbs-quiz" button to the quiz.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#nbs-quiz"]');
+    if (!a) return;
+    var quiz = document.getElementById('nbs-quiz');
+    if (!quiz) return;
+    e.preventDefault();
+    window.scrollTo({ top: quiz.getBoundingClientRect().top + window.pageYOffset - 10, behavior: 'smooth' });
+  });
+
+  // Sticky mobile CTA: show once the visitor has scrolled past the quiz.
+  var sticky = document.getElementById('nbs-sticky');
+  var quiz = document.getElementById('nbs-quiz');
+  if (!sticky || !quiz || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (entries) {
+    var e = entries[0];
+    sticky.classList.toggle('is-visible', !e.isIntersecting && e.boundingClientRect.top < 0);
+  }).observe(quiz);
+})();
+</script>

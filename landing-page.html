@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Driveway Quote + 10% Off | North Bound Surfacing</title>
+<meta name="description" content="Resin, tarmac, block paving, porcelain and artificial turf across Greater Manchester & Cheshire. Get your free quote in 30 seconds with 10% off.">
+<style>html,body{margin:0;padding:0;background:#0F0F0F}</style>
+<!--
+  ============================================================
+  00 · GLOBAL HEAD (fonts + all styles)
+  GHL: Funnel/Website > Page > Settings > Tracking Code > HEADER
+  (or paste into the first Custom Code element on the page)
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --nbs-orange: #F89E1B;
+    --nbs-orange-hover: #FFB23F;
+    --nbs-orange-deep: #D9820A;
+    --nbs-black: #0F0F0F;
+    --nbs-ink: #231F20;
+    --nbs-charcoal: #181818;
+    --nbs-tile: #242424;
+    --nbs-tile-hover: #2E2E2E;
+    --nbs-line-dark: rgba(255, 255, 255, .12);
+    --nbs-light: #F5F4F1;
+    --nbs-white: #FFFFFF;
+    --nbs-muted: #6A6A6A;
+    --nbs-muted-dark: #B5B5B5;
+    --nbs-green: #1FA35C;
+    --nbs-radius: 14px;
+    --nbs-head: 'Montserrat', system-ui, sans-serif;
+    --nbs-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  .nbs, .nbs * { box-sizing: border-box; }
+  .nbs { font-family: var(--nbs-body); color: var(--nbs-ink); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .nbs img { max-width: 100%; display: block; }
+  .nbs h1, .nbs h2, .nbs h3 { font-family: var(--nbs-head); margin: 0; line-height: 1.15; letter-spacing: -.01em; }
+  .nbs p { margin: 0; }
+  .nbs-wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  .nbs-narrow { max-width: 720px; }
+  .nbs-section { padding: 56px 0; }
+  .nbs-dark { background: var(--nbs-charcoal); color: var(--nbs-white); }
+  .nbs-light { background: var(--nbs-light); }
+  .nbs-white-bg { background: var(--nbs-white); }
+  .nbs-title { font-size: clamp(26px, 5.6vw, 38px); font-weight: 800; text-align: center; }
+  .nbs-title .nbs-hl { color: var(--nbs-orange); }
+  .nbs-sub { text-align: center; color: var(--nbs-muted); margin-top: 10px; font-size: 16px; }
+  .nbs-dark .nbs-sub { color: var(--nbs-muted-dark); }
+  .nbs-hl { color: var(--nbs-orange); }
+
+  /* ---------- Buttons ---------- */
+  .nbs-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font-family: var(--nbs-head); font-weight: 800; font-size: 17px; letter-spacing: .01em;
+    background: var(--nbs-orange); color: var(--nbs-black) !important; text-decoration: none !important;
+    border: 0; border-radius: 10px; padding: 17px 28px; cursor: pointer;
+    box-shadow: 0 6px 0 var(--nbs-orange-deep), 0 10px 24px rgba(248, 158, 27, .28);
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  }
+  .nbs-btn:hover { background: var(--nbs-orange-hover); }
+  .nbs-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--nbs-orange-deep), 0 4px 12px rgba(248, 158, 27, .25); }
+  .nbs-btn[disabled] { opacity: .45; cursor: not-allowed; }
+  .nbs-btn-block { width: 100%; }
+  .nbs-cta-row { text-align: center; margin-top: 32px; }
+  .nbs-cta-note { font-size: 13px; color: var(--nbs-muted); margin-top: 20px; }
+  .nbs-dark .nbs-cta-note { color: var(--nbs-muted-dark); }
+
+  /* ---------- Stars / badges ---------- */
+  .nbs-stars { color: #FBBC05; letter-spacing: 2px; font-size: 15px; line-height: 1; }
+  .nbs-google { font-family: 'Arial', sans-serif; font-weight: 700; letter-spacing: -.02em; }
+  .nbs-google b:nth-child(1), .nbs-google b:nth-child(4) { color: #4285F4; }
+  .nbs-google b:nth-child(2), .nbs-google b:nth-child(6) { color: #EA4335; }
+  .nbs-google b:nth-child(3) { color: #FBBC05; }
+  .nbs-google b:nth-child(5) { color: #34A853; }
+
+  /* ---------- 01 Header + offer bar ---------- */
+  .nbs-header { background: var(--nbs-black); border-bottom: 1px solid var(--nbs-line-dark); }
+  .nbs-header .nbs-wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 68px; }
+  .nbs-header-logo { height: 38px; width: auto; }
+  .nbs-header-rating { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; color: #fff; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .nbs-header-rating .nbs-google { font-size: 17px; }
+  .nbs-header-rating .nbs-stars { font-size: 12px; }
+  .nbs-offer-bar { background: var(--nbs-orange); color: var(--nbs-black); text-align: center; font-family: var(--nbs-head); font-weight: 800; font-size: 15px; padding: 10px 16px; }
+  .nbs-offer-bar span { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ---------- 02 Hero ---------- */
+  .nbs-hero { background: radial-gradient(120% 70% at 50% 0%, #262626 0%, var(--nbs-charcoal) 60%); color: #fff; padding: 26px 0 0; text-align: center; }
+  .nbs-hero-kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--nbs-muted-dark); margin-bottom: 12px; }
+  .nbs-hero-kicker .nbs-stars { font-size: 13px; }
+  .nbs-hero h1 { font-size: clamp(30px, 7.4vw, 54px); font-weight: 900; max-width: 860px; margin: 0 auto; }
+  .nbs-hero h1 .nbs-underline { white-space: nowrap; color: var(--nbs-orange); text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 6px; }
+  .nbs-hero-services { margin-top: 12px; font-family: var(--nbs-head); font-weight: 700; font-size: 14px; color: var(--nbs-orange); letter-spacing: .04em; text-transform: uppercase; }
+  .nbs-hero-lead { margin-top: 10px; font-family: var(--nbs-head); font-weight: 800; font-size: 18px; }
+  .nbs-hero-lead small { display: block; font-family: var(--nbs-body); font-weight: 500; font-size: 14px; color: var(--nbs-muted-dark); margin-top: 4px; }
+  .nbs-hero-media { position: relative; max-width: 760px; margin: 18px auto 0; border-radius: 18px; overflow: hidden; border: 3px solid var(--nbs-orange); box-shadow: 0 20px 50px rgba(0, 0, 0, .45); }
+  .nbs-hero-media img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: center 72%; }
+  .nbs-hero-media-tag {
+    position: absolute; top: 14px; right: 14px; background: var(--nbs-orange); color: var(--nbs-black);
+    font-family: var(--nbs-head); font-weight: 900; font-size: 15px; line-height: 1.1; padding: 10px 12px; border-radius: 10px; transform: rotate(3deg);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
+  }
+  .nbs-hero-media-tag small { display: block; font-size: 10px; font-weight: 800; letter-spacing: .06em; }
+
+  /* Ticker */
+  .nbs-ticker { overflow: hidden; border-top: 1px solid var(--nbs-line-dark); border-bottom: 1px solid var(--nbs-line-dark); margin-top: 22px; background: #121212; }
+  .nbs-ticker-track { display: flex; width: max-content; animation: nbs-marquee 26s linear infinite; }
+  .nbs-ticker-item { display: flex; align-items: center; gap: 10px; padding: 13px 22px; font-family: var(--nbs-head); font-weight: 700; font-size: 14px; white-space: nowrap; color: #fff; }
+  .nbs-ticker-item::after { content: "•"; color: var(--nbs-orange); margin-left: 22px; }
+  .nbs-ticker-item b { color: var(--nbs-orange); }
+  @keyframes nbs-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .nbs-ticker-track { animation: none; } }
+
+  /* ---------- 03 Quiz (fake form) ---------- */
+  .nbs-quiz { background: var(--nbs-charcoal); color: #fff; padding: 26px 0 44px; scroll-margin-top: 10px; }
+  .nbs-quiz-card { max-width: 620px; margin: 0 auto; }
+  .nbs-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; }
+  .nbs-progress-bar { flex: 1; height: 8px; background: #2C2C2C; border-radius: 99px; overflow: hidden; }
+  .nbs-progress-fill { height: 100%; width: 0; background: var(--nbs-orange); border-radius: 99px; transition: width .35s ease; }
+  .nbs-progress-label { font-size: 12px; font-weight: 700; color: var(--nbs-muted-dark); min-width: 70px; text-align: right; }
+  .nbs-step { display: none; animation: nbs-in .3s ease; }
+  .nbs-step.is-active { display: block; }
+  @keyframes nbs-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .nbs-q { text-align: center; font-family: var(--nbs-head); font-weight: 800; font-size: clamp(21px, 5vw, 26px); }
+  .nbs-q-hint { text-align: center; font-size: 14px; color: var(--nbs-muted-dark); margin: 8px 0 20px; }
+  .nbs-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .nbs-tiles-3 { grid-template-columns: repeat(3, 1fr); }
+  .nbs-tile {
+    position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+    min-height: 128px; padding: 18px 10px 14px; background: var(--nbs-tile); color: #fff; border: 2px solid transparent;
+    border-radius: var(--nbs-radius); font-family: var(--nbs-head); font-weight: 700; font-size: 15px; line-height: 1.2; text-align: center; cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, transform .1s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nbs-tile:hover { background: var(--nbs-tile-hover); }
+  .nbs-tile:active { transform: scale(.97); }
+  .nbs-tile:focus-visible { outline: 3px solid var(--nbs-orange-hover); outline-offset: 2px; }
+  .nbs-tile svg { width: 46px; height: 46px; color: var(--nbs-orange); }
+  .nbs-tile small { display: block; font-family: var(--nbs-body); font-weight: 500; font-size: 12px; color: var(--nbs-muted-dark); margin-top: 3px; }
+  .nbs-tile.is-selected { border-color: var(--nbs-orange); background: #2B2418; }
+  .nbs-tile-check {
+    position: absolute; top: 9px; right: 9px; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #555;
+    display: flex; align-items: center; justify-content: center; font-size: 13px; color: transparent;
+  }
+  .nbs-tile.is-selected .nbs-tile-check { background: var(--nbs-orange); border-color: var(--nbs-orange); color: var(--nbs-black); }
+  .nbs-tile-wide { grid-column: 1 / -1; min-height: 0; flex-direction: row; justify-content: flex-start; gap: 14px; padding: 16px 18px; text-align: left; }
+  .nbs-tile-wide svg { width: 36px; height: 36px; flex: none; }
+  .nbs-step-actions { display: flex; gap: 10px; margin-top: 20px; }
+  .nbs-step-actions .nbs-btn { flex: 1; }
+  .nbs-back { background: transparent; border: 0; color: var(--nbs-muted-dark); font-size: 14px; font-weight: 600; cursor: pointer; padding: 12px 6px; margin-top: 12px; display: inline-flex; gap: 6px; align-items: center; }
+  .nbs-back:hover { color: #fff; }
+  .nbs-center { text-align: center; }
+
+  .nbs-field { margin-bottom: 14px; text-align: left; }
+  .nbs-field label { display: block; font-size: 13px; font-weight: 600; color: var(--nbs-muted-dark); margin-bottom: 6px; }
+  .nbs-input {
+    width: 100%; font: 600 17px/1.2 var(--nbs-body); color: var(--nbs-ink); background: #fff; border: 2px solid #fff; border-radius: 10px;
+    padding: 15px 16px; outline: none; transition: border-color .15s ease; -webkit-appearance: none;
+  }
+  .nbs-input:focus { border-color: var(--nbs-orange); }
+  .nbs-input.is-invalid { border-color: #FF5A4E; }
+  .nbs-err { display: none; color: #FF8A80; font-size: 13px; font-weight: 600; margin-top: 6px; }
+  .nbs-field.has-error .nbs-err { display: block; }
+  .nbs-postcode { text-transform: uppercase; text-align: center; font-size: 22px; letter-spacing: .08em; }
+  .nbs-qualify { background: #1F2A1F; border: 1px solid #2F5D38; color: #CFF5D6; border-radius: 12px; padding: 12px 14px; font-size: 14px; font-weight: 600; text-align: center; margin-bottom: 18px; }
+  .nbs-qualify b { color: #fff; }
+  .nbs-privacy { font-size: 12px; color: #8E8E8E; text-align: center; margin-top: 20px; line-height: 1.5; }
+  .nbs-privacy a { color: #BDBDBD; }
+  .nbs-reassure { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; font-size: 13px; font-weight: 600; color: var(--nbs-muted-dark); }
+  .nbs-reassure span::before { content: "✓ "; color: var(--nbs-orange); font-weight: 800; }
+  .nbs-spinner { width: 20px; height: 20px; border: 3px solid rgba(0, 0, 0, .25); border-top-color: var(--nbs-black); border-radius: 50%; animation: nbs-spin .7s linear infinite; }
+  @keyframes nbs-spin { to { transform: rotate(360deg); } }
+  .nbs-done { text-align: center; padding: 10px 0; }
+  .nbs-done-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--nbs-orange); color: var(--nbs-black); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 32px; font-weight: 900; }
+  .nbs-done p { color: var(--nbs-muted-dark); margin-top: 10px; }
+
+  /* ---------- 04 Proof strip ---------- */
+  .nbs-proof { background: var(--nbs-white); padding: 26px 0; border-bottom: 1px solid #ECEAE5; }
+  .nbs-proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; }
+  .nbs-proof-num { font-family: var(--nbs-head); font-weight: 900; font-size: clamp(22px, 6vw, 32px); color: var(--nbs-ink); line-height: 1.05; }
+  .nbs-proof-label { font-size: 12px; font-weight: 600; color: var(--nbs-muted); margin-top: 4px; line-height: 1.3; }
+  .nbs-proof-grid > div + div { border-left: 1px solid #ECEAE5; }
+
+  /* ---------- 05 Recent work ---------- */
+  .nbs-work-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 30px; }
+  .nbs-work-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, .08); }
+  .nbs-work-img { position: relative; }
+  .nbs-work-img img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 75%; }
+  .nbs-work-tag { position: absolute; left: 12px; top: 12px; background: var(--nbs-orange); color: var(--nbs-black); font-family: var(--nbs-head); font-weight: 800; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; padding: 6px 10px; border-radius: 6px; }
+  .nbs-work-body { padding: 18px 18px 20px; }
+  .nbs-work-body h3 { font-size: 19px; font-weight: 800; }
+  .nbs-work-body ul { list-style: none; margin: 10px 0 0; padding: 0; }
+  .nbs-work-body li { position: relative; padding-left: 26px; margin-top: 7px; font-size: 15px; color: #3C3C3C; }
+  .nbs-work-body li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--nbs-orange); color: var(--nbs-black); font-size: 11px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+  .nbs-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 26px; }
+  .nbs-chip { background: #fff; border: 1px solid #E4E1DA; border-radius: 99px; padding: 8px 14px; font-size: 14px; font-weight: 600; }
+
+  /* ---------- 06 Why us ---------- */
+  .nbs-why-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 30px; }
+  .nbs-why-item { display: flex; gap: 16px; align-items: flex-start; background: #fff; border: 1px solid #ECEAE5; border-radius: 14px; padding: 18px; }
+  .nbs-why-icon { flex: none; width: 48px; height: 48px; border-radius: 12px; background: #FFF3E0; color: var(--nbs-orange-deep); display: flex; align-items: center; justify-content: center; }
+  .nbs-why-icon svg { width: 26px; height: 26px; }
+  .nbs-why-item h3 { font-size: 17px; font-weight: 800; }
+  .nbs-why-item p { font-size: 15px; color: #4A4A4A; margin-top: 4px; }
+
+  /* ---------- 06b Team ---------- */
+  .nbs-team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 820px; margin: 28px auto 0; }
+  .nbs-team-grid img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; }
+  .nbs-team-points { list-style: none; padding: 0; margin: 24px auto 0; max-width: 640px; }
+  .nbs-team-points li { position: relative; padding-left: 30px; margin-top: 12px; font-size: 16px; color: #3C3C3C; }
+  .nbs-team-points li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; border-radius: 50%; background: var(--nbs-orange); color: var(--nbs-black); font-size: 12px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .nbs-team-points b { color: var(--nbs-ink); }
+
+  /* ---------- 07 Reviews ---------- */
+  .nbs-rating-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 560px; margin: 28px auto 0; }
+  .nbs-rating-card { background: #fff; border: 1px solid #ECEAE5; border-radius: 14px; padding: 18px 12px; text-align: center; }
+  .nbs-rating-card .nbs-google { font-size: 24px; }
+  .nbs-rating-score { font-family: var(--nbs-head); font-weight: 900; font-size: 30px; margin-top: 6px; line-height: 1; }
+  .nbs-rating-score small { font-size: 15px; color: var(--nbs-muted); font-weight: 700; }
+  .nbs-rating-meta { font-size: 13px; color: var(--nbs-muted); font-weight: 600; margin-top: 6px; }
+  .nbs-checkatrade { font-family: var(--nbs-head); font-weight: 800; font-size: 20px; color: #1B2E48; display: inline-flex; align-items: center; gap: 6px; }
+  .nbs-checkatrade i { font-style: normal; width: 22px; height: 22px; border-radius: 50%; background: #E03C31; color: #fff; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; }
+  .nbs-review-list { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 22px; }
+  .nbs-review { background: #fff; border: 1px solid #ECEAE5; border-radius: 14px; padding: 18px; }
+  .nbs-review-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .nbs-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--nbs-orange); color: var(--nbs-black); font-family: var(--nbs-head); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .nbs-review-name { font-weight: 700; font-size: 15px; }
+  .nbs-review-src { font-size: 12px; color: var(--nbs-muted); }
+  .nbs-review p { font-size: 15px; color: #333; }
+
+  /* ---------- 08 Process ---------- */
+  .nbs-steps { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 30px; counter-reset: nbs-step; }
+  .nbs-step-card { position: relative; background: var(--nbs-tile); border-radius: 14px; padding: 20px 20px 20px 76px; }
+  .nbs-step-card::before {
+    counter-increment: nbs-step; content: counter(nbs-step); position: absolute; left: 18px; top: 18px; width: 42px; height: 42px; border-radius: 50%;
+    background: var(--nbs-orange); color: var(--nbs-black); font-family: var(--nbs-head); font-weight: 900; font-size: 19px; display: flex; align-items: center; justify-content: center;
+  }
+  .nbs-step-card h3 { font-size: 17px; font-weight: 800; color: #fff; }
+  .nbs-step-card p { font-size: 15px; color: var(--nbs-muted-dark); margin-top: 4px; }
+
+  /* ---------- 09 FAQ ---------- */
+  .nbs-faq { margin-top: 28px; }
+  .nbs-faq details { background: #fff; border: 1px solid #ECEAE5; border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+  .nbs-faq summary { list-style: none; cursor: pointer; padding: 17px 52px 17px 18px; position: relative; font-family: var(--nbs-head); font-weight: 700; font-size: 16px; }
+  .nbs-faq summary::-webkit-details-marker { display: none; }
+  .nbs-faq summary::after { content: "+"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; border-radius: 50%; background: var(--nbs-orange); color: var(--nbs-black); font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .nbs-faq details[open] summary::after { content: "–"; }
+  .nbs-faq details p { padding: 0 18px 18px; color: #444; font-size: 15px; }
+
+  /* ---------- 10 Final CTA ---------- */
+  .nbs-final { position: relative; overflow: hidden; text-align: center; }
+  .nbs-final-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: .22; }
+  .nbs-final .nbs-wrap { position: relative; }
+  .nbs-final h2 { font-size: clamp(28px, 6.4vw, 44px); font-weight: 900; }
+  .nbs-final p { color: #DADADA; margin-top: 12px; font-size: 17px; }
+  .nbs-offer-pill { display: inline-block; margin-top: 18px; background: rgba(248, 158, 27, .14); border: 1px solid rgba(248, 158, 27, .55); color: var(--nbs-orange); border-radius: 99px; padding: 8px 16px; font-family: var(--nbs-head); font-weight: 800; font-size: 14px; }
+
+  /* ---------- 11 Footer + sticky CTA ---------- */
+  .nbs-footer { background: var(--nbs-black); color: #9A9A9A; text-align: center; padding: 34px 0 110px; font-size: 13px; }
+  .nbs-footer img { height: 84px; width: auto; margin: 0 auto 14px; }
+  .nbs-footer a { color: #C9C9C9; }
+  .nbs-footer p + p { margin-top: 6px; }
+  .nbs-sticky {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(15, 15, 15, .94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-top: 1px solid var(--nbs-line-dark);
+    transform: translateY(110%); transition: transform .3s ease;
+  }
+  .nbs-sticky.is-visible { transform: none; }
+  .nbs-sticky .nbs-btn { width: 100%; padding: 15px 20px; font-size: 16px; box-shadow: 0 4px 0 var(--nbs-orange-deep); }
+
+  /* ---------- Desktop ---------- */
+  @media (min-width: 760px) {
+    .nbs-section { padding: 84px 0; }
+    .nbs-header .nbs-wrap { height: 78px; }
+    .nbs-header-logo { height: 46px; }
+    .nbs-hero { padding-top: 52px; }
+    .nbs-hero-media img { aspect-ratio: 16 / 9; }
+    .nbs-work-img img { aspect-ratio: 4 / 5; }
+    .nbs-tiles-5 { grid-template-columns: repeat(6, 1fr); }
+    .nbs-tiles-5 .nbs-tile { grid-column: span 2; }
+    .nbs-tiles-5 .nbs-tile:nth-child(4) { grid-column: 2 / span 2; }
+    .nbs-tiles-5 .nbs-tile:nth-child(5) { grid-column: 4 / span 2; }
+    .nbs-work-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .nbs-team-grid { gap: 20px; }
+    .nbs-team-grid img { aspect-ratio: 1 / 1; }
+    .nbs-why-grid { grid-template-columns: 1fr 1fr; }
+    .nbs-review-list { grid-template-columns: repeat(3, 1fr); }
+    .nbs-steps { grid-template-columns: repeat(3, 1fr); }
+    .nbs-step-card { padding: 76px 22px 24px; }
+    .nbs-footer { padding-bottom: 40px; }
+    .nbs-sticky { display: none; }
+  }
+  @media (max-width: 759px) {
+    .nbs-tiles-5 .nbs-tile:last-child { grid-column: 1 / -1; min-height: 0; flex-direction: row; gap: 12px; padding: 16px; }
+    .nbs-tiles-5 .nbs-tile:last-child svg { width: 36px; height: 36px; }
+  }
+  @media (max-width: 380px) {
+    .nbs-header-rating { display: none; }
+    .nbs-tiles-3 { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<!--
+  ============================================================
+  01 · HEADER + OFFER BAR
+  Swap the logo src for your GHL media URL of assets/logo-horizontal-white.png
+  ============================================================
+-->
+<div class="nbs">
+  <header class="nbs-header">
+    <div class="nbs-wrap">
+      <img class="nbs-header-logo" src="assets/logo-horizontal-white.png" alt="North Bound Surfacing" width="900" height="176">
+      <div class="nbs-header-rating" aria-label="Rated 5 out of 5 on Google">
+        <span class="nbs-google"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></span>
+        <span class="nbs-stars">★★★★★</span>
+        <span>218 Reviews</span>
+      </div>
+    </div>
+  </header>
+  <div class="nbs-offer-bar">🔥 <span>10% OFF</span> – Limited Time Only</div>
+</div>
+
+<!--
+  ============================================================
+  02 · HERO (headline + job photo + scrolling proof ticker)
+  Swap the hero img src for your GHL media URL of assets/hero-resin-turf-porcelain.webp
+  ============================================================
+-->
+<div class="nbs">
+  <section class="nbs-hero">
+    <div class="nbs-wrap">
+      <div class="nbs-hero-kicker"><span class="nbs-stars">★★★★★</span> 218 Five-Star Google Reviews</div>
+      <h1>Get The Best Local Price On Your New Driveway With <span class="nbs-underline">10% OFF</span></h1>
+      <p class="nbs-hero-services">Resin · Tarmac · Block Paving · Porcelain · Artificial Turf</p>
+      <p class="nbs-hero-lead">Get Your Free Quote In Just 30 Seconds<small>Using the quick survey below ↓</small></p>
+      <div class="nbs-hero-media">
+        <img src="assets/hero-resin-turf-porcelain.webp" alt="Resin driveway with artificial turf and porcelain paving installed by North Bound Surfacing" width="1080" height="830" fetchpriority="high">
+        <div class="nbs-hero-media-tag"><small>LIMITED TIME</small>10% OFF</div>
+      </div>
+    </div>
+    <div class="nbs-ticker" aria-hidden="true">
+      <div class="nbs-ticker-track">
+        <!-- Items are listed twice so the loop is seamless -->
+        <div class="nbs-ticker-item"><b>218</b> Five-Star Google Reviews</div>
+        <div class="nbs-ticker-item">Rated <b>10/10</b> On Checkatrade</div>
+        <div class="nbs-ticker-item"><b>10% OFF</b> For A Limited Time</div>
+        <div class="nbs-ticker-item">Free, No-Obligation Quotes</div>
+        <div class="nbs-ticker-item">Covering Greater Manchester &amp; Cheshire</div>
+        <div class="nbs-ticker-item"><b>218</b> Five-Star Google Reviews</div>
+        <div class="nbs-ticker-item">Rated <b>10/10</b> On Checkatrade</div>
+        <div class="nbs-ticker-item"><b>10% OFF</b> For A Limited Time</div>
+        <div class="nbs-ticker-item">Free, No-Obligation Quotes</div>
+        <div class="nbs-ticker-item">Covering Greater Manchester &amp; Cheshire</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--
+  ============================================================
+  03 · QUIZ ("fake form") + GHL BRIDGE
+  Paste this whole block into ONE Custom Code element, directly under the hero.
+
+  How it works:
+  1. The visitor answers the quiz below (our own styled form).
+  2. On submit, the script copies every answer into your hidden
+     native GHL Form on the same page and clicks its submit button.
+  3. GHL stores the lead, runs your workflows and redirects / shows
+     its own thank-you exactly as configured in the form settings.
+
+  Setup: edit NBS_CONFIG at the top of the <script> (field names).
+  Debug: add ?nbsdebug=1 to the page URL. The hidden GHL form becomes
+  visible and every field name it contains is logged to the console.
+  ============================================================
+-->
+<div class="nbs">
+  <section class="nbs-quiz" id="nbs-quiz">
+    <div class="nbs-wrap">
+      <div class="nbs-quiz-card" id="nbs-quiz-card">
+
+        <div class="nbs-progress" aria-hidden="true">
+          <div class="nbs-progress-bar"><div class="nbs-progress-fill" id="nbs-progress-fill"></div></div>
+          <div class="nbs-progress-label" id="nbs-progress-label">Step 1 of 5</div>
+        </div>
+
+        <!-- STEP 1 · Services (multi-select) -->
+        <div class="nbs-step is-active" data-step="1" data-key="services" data-multi>
+          <h2 class="nbs-q">What Are You Looking To Have Installed?</h2>
+          <p class="nbs-q-hint">Tap all that apply ↓</p>
+          <div class="nbs-tiles nbs-tiles-5">
+            <button type="button" class="nbs-tile" data-value="Resin">
+              <span class="nbs-tile-check">✓</span>
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38 14 10h20l8 28z"/><g fill="currentColor" stroke="none"><circle cx="17" cy="18" r="1.6"/><circle cx="24" cy="15" r="1.4"/><circle cx="30" cy="19" r="1.6"/><circle cx="14" cy="28" r="1.7"/><circle cx="21" cy="24" r="1.5"/><circle cx="28" cy="27" r="1.8"/><circle cx="34" cy="31" r="1.5"/><circle cx="19" cy="33" r="1.6"/><circle cx="26" cy="34" r="1.4"/></g></svg>
+              Resin
+            </button>
+            <button type="button" class="nbs-tile" data-value="Tarmac">
+              <span class="nbs-tile-check">✓</span>
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 40 16 8M42 40 32 8"/><path d="M24 10v5M24 21v6M24 33v7" stroke-width="3"/></svg>
+              Tarmac
+            </button>
+            <button type="button" class="nbs-tile" data-value="Block Paving / Porcelain">
+              <span class="nbs-tile-check">✓</span>
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><rect x="6" y="8" width="16" height="9" rx="1"/><rect x="26" y="8" width="16" height="9" rx="1"/><rect x="6" y="21" width="7" height="9" rx="1"/><rect x="17" y="21" width="16" height="9" rx="1"/><rect x="37" y="21" width="5" height="9" rx="1"/><rect x="6" y="34" width="16" height="7" rx="1"/><rect x="26" y="34" width="16" height="7" rx="1"/></svg>
+              Block Paving / Porcelain
+            </button>
+            <button type="button" class="nbs-tile" data-value="Paved Edging">
+              <span class="nbs-tile-check">✓</span>
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><rect x="6" y="6" width="36" height="36" rx="2"/><rect x="13" y="13" width="22" height="22" rx="1" stroke-dasharray="3 3"/><path d="M6 15h7M6 24h7M6 33h7M35 15h7M35 24h7M35 33h7M15 6v7M24 6v7M33 6v7M15 35v7M24 35v7M33 35v7"/></svg>
+              Paved Edging
+            </button>
+            <button type="button" class="nbs-tile" data-value="Artificial Turf">
+              <span class="nbs-tile-check">✓</span>
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 40h40"/><path d="M8 40c0-8 2-14 5-18M13 40c0-6-1-12-4-16M18 40c0-10 3-18 7-22M24 40c0-8-2-15-6-19M29 40c0-9 2-16 6-21M34 40c0-7-2-12-5-16M39 40c0-7 1-12 4-15"/></svg>
+              Artificial Turf
+            </button>
+          </div>
+          <div class="nbs-step-actions">
+            <button type="button" class="nbs-btn" data-next disabled>Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 · Size -->
+        <div class="nbs-step" data-step="2" data-key="size">
+          <h2 class="nbs-q">Roughly How Big Is The Area?</h2>
+          <p class="nbs-q-hint">A rough guess is fine ↓</p>
+          <div class="nbs-tiles">
+            <button type="button" class="nbs-tile" data-value="Small (1-2 cars)">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 30v-6l4-8h22l4 8v6z"/><circle cx="15" cy="31" r="3.5" fill="currentColor"/><circle cx="33" cy="31" r="3.5" fill="currentColor"/><path d="M9 24h30"/></svg>
+              Small<small>1–2 cars</small>
+            </button>
+            <button type="button" class="nbs-tile" data-value="Medium (3-4 cars)">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 32v-5l3-6h14l3 6v5zM26 32v-5l3-6h14l3 6v5z"/><path d="M2 27h20M26 27h20"/><circle cx="7" cy="33" r="2.6" fill="currentColor"/><circle cx="17" cy="33" r="2.6" fill="currentColor"/><circle cx="31" cy="33" r="2.6" fill="currentColor"/><circle cx="41" cy="33" r="2.6" fill="currentColor"/></svg>
+              Medium<small>3–4 cars</small>
+            </button>
+            <button type="button" class="nbs-tile" data-value="Large (5+ cars)">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M4 42 12 6h24l8 36z"/><path d="M15 14h18M13 23h22M10 33h28" stroke-dasharray="3 3"/></svg>
+              Large<small>5+ cars</small>
+            </button>
+            <button type="button" class="nbs-tile" data-value="Not sure">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M18.5 19a5.5 5.5 0 1 1 7.6 5.1c-1.3.6-2.1 1.8-2.1 3.2V29"/><circle cx="24" cy="34.5" r="1.6" fill="currentColor"/></svg>
+              Not Sure<small>We'll measure it</small>
+            </button>
+          </div>
+          <div class="nbs-center"><button type="button" class="nbs-back" data-back>← Back</button></div>
+        </div>
+
+        <!-- STEP 3 · Timeframe -->
+        <div class="nbs-step" data-step="3" data-key="timeframe">
+          <h2 class="nbs-q">When Would You Like The Work Done?</h2>
+          <p class="nbs-q-hint">Tap an option below ↓</p>
+          <div class="nbs-tiles">
+            <button type="button" class="nbs-tile" data-value="As soon as possible">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M27 4 10 27h13l-3 17 18-24H25z"/></svg>
+              As Soon As Possible
+            </button>
+            <button type="button" class="nbs-tile" data-value="Within 1-3 months">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="36" height="32" rx="3"/><path d="M6 19h36M15 5v9M33 5v9"/><path d="M17 30l5 5 9-10"/></svg>
+              Within 1–3 Months
+            </button>
+            <button type="button" class="nbs-tile" data-value="3-6 months">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M24 13v11l7 5"/></svg>
+              3–6 Months
+            </button>
+            <button type="button" class="nbs-tile" data-value="Just getting prices">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="21" cy="21" r="13"/><path d="m31 31 11 11"/><path d="M21 15v12M17 19h6a2.5 2.5 0 0 1 0 5h-4"/></svg>
+              Just Getting Prices
+            </button>
+          </div>
+          <div class="nbs-center"><button type="button" class="nbs-back" data-back>← Back</button></div>
+        </div>
+
+        <!-- STEP 4 · Postcode -->
+        <div class="nbs-step" data-step="4" data-key="postcode">
+          <h2 class="nbs-q">What's The Postcode Of The Property?</h2>
+          <p class="nbs-q-hint">We cover all of Greater Manchester &amp; Cheshire</p>
+          <div class="nbs-field">
+            <input class="nbs-input nbs-postcode" id="nbs-postcode" type="text" inputmode="text" autocomplete="postal-code" placeholder="e.g. M33 7AB" maxlength="9" aria-label="Postcode">
+            <div class="nbs-err">Please enter a valid UK postcode.</div>
+          </div>
+          <div class="nbs-step-actions">
+            <button type="button" class="nbs-btn" data-next>Continue →</button>
+          </div>
+          <div class="nbs-center"><button type="button" class="nbs-back" data-back>← Back</button></div>
+        </div>
+
+        <!-- STEP 5 · Contact details -->
+        <div class="nbs-step" data-step="5" data-key="contact">
+          <div class="nbs-qualify">🎉 <b>Great news!</b> Your property qualifies for <b>10% OFF</b> your installation.</div>
+          <h2 class="nbs-q">Where Should We Send Your Free Quote?</h2>
+          <p class="nbs-q-hint">Takes 10 seconds. No spam, ever.</p>
+          <form id="nbs-contact" novalidate>
+            <div class="nbs-field">
+              <label for="nbs-name">Full name</label>
+              <input class="nbs-input" id="nbs-name" type="text" autocomplete="name" placeholder="e.g. Sarah Jones">
+              <div class="nbs-err">Please enter your name.</div>
+            </div>
+            <div class="nbs-field">
+              <label for="nbs-phone">Mobile number</label>
+              <input class="nbs-input" id="nbs-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. 07123 456789">
+              <div class="nbs-err">Please enter a valid UK phone number.</div>
+            </div>
+            <div class="nbs-field">
+              <label for="nbs-email">Email address</label>
+              <input class="nbs-input" id="nbs-email" type="email" inputmode="email" autocomplete="email" placeholder="e.g. sarah@email.com">
+              <div class="nbs-err">Please enter a valid email address.</div>
+            </div>
+            <button type="submit" class="nbs-btn nbs-btn-block" id="nbs-submit">Get My Free Quote + 10% Off →</button>
+            <p class="nbs-privacy">By submitting, you agree to North Bound Surfacing contacting you by phone, SMS and email about your quote. We never share your details. <a href="#" target="_blank" rel="noopener">Privacy Policy</a></p>
+          </form>
+          <div class="nbs-center"><button type="button" class="nbs-back" data-back>← Back</button></div>
+        </div>
+
+        <!-- DONE (only shown if GHL doesn't redirect) -->
+        <div class="nbs-step" data-step="done">
+          <div class="nbs-done">
+            <div class="nbs-done-icon">✓</div>
+            <h2 class="nbs-q">Thanks! Your Quote Request Is In.</h2>
+            <p>A member of the North Bound Surfacing team will be in touch shortly to arrange your free quote. Keep an eye on your phone.</p>
+          </div>
+        </div>
+
+        <div class="nbs-reassure" id="nbs-reassure">
+          <span>Free &amp; no obligation</span><span>218 five-star reviews</span><span>10/10 Checkatrade</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  /* =========================================================
+     CONFIG — edit to match your hidden GHL form.
+     Each answer can be written to one or more GHL fields.
+     Use the field's "name" (run the page with ?nbsdebug=1 to list them).
+     Leave an array empty to skip that answer.
+     ========================================================= */
+  var NBS_CONFIG = {
+    ghlFormSelector: '',            // leave '' to auto-detect the GHL form on the page
+    fields: {
+      full_name:  ['full_name'],
+      first_name: ['first_name'],
+      last_name:  ['last_name'],
+      phone:      ['phone'],
+      email:      ['email'],
+      postcode:   ['postal_code'],
+      services:   [],               // e.g. ['surface_type']  (checkbox, multi-select, dropdown or text field)
+      size:       [],               // e.g. ['driveway_size']
+      timeframe:  [],               // e.g. ['project_timeframe']
+      summary:    []                // e.g. ['quiz_answers'] (a multi-line text field that receives every answer)
+    },
+    tickConsent: true,              // tick GHL's consent/terms checkbox (our form shows the consent wording)
+    phoneFormat: 'e164',            // 'e164' turns 07123 456789 into +447123456789; 'raw' sends as typed
+    successTimeoutMs: 7000,         // if GHL hasn't redirected by then, show our thank-you message
+    redirectUrl: '',                // optional: send people here after that timeout instead (e.g. your thank-you page)
+    fireFacebookLead: false,        // true = fbq('track','Lead') on submit. Leave false if your thank-you page fires it.
+    debug: /[?&]nbsdebug=1/.test(location.search)
+  };
+  // Optional: define window.NBS_CONFIG_OVERRIDE = { fields: {...} } in an earlier script to override the above.
+  if (window.NBS_CONFIG_OVERRIDE) {
+    var o = window.NBS_CONFIG_OVERRIDE;
+    Object.keys(o).forEach(function (k) { if (k !== 'fields') NBS_CONFIG[k] = o[k]; });
+    if (o.fields) Object.keys(o.fields).forEach(function (k) { NBS_CONFIG.fields[k] = o.fields[k]; });
+  }
+
+  var root = document.getElementById('nbs-quiz-card');
+  if (!root) return;
+  var steps = [].slice.call(root.querySelectorAll('.nbs-step'));
+  var numbered = steps.filter(function (s) { return /^\d+$/.test(s.dataset.step); });
+  var total = numbered.length;
+  var answers = { services: [] };
+  var current = 1;
+
+  function log() { if (NBS_CONFIG.debug) console.log.apply(console, ['[NBS]'].concat([].slice.call(arguments))); }
+
+  /* ---------- Step navigation ---------- */
+  function show(step) {
+    steps.forEach(function (s) { s.classList.toggle('is-active', String(s.dataset.step) === String(step)); });
+    current = step;
+    var n = step === 'done' ? total : step - 1;
+    document.getElementById('nbs-progress-fill').style.width = Math.round((n / total) * 100) + '%';
+    document.getElementById('nbs-progress-label').textContent = step === 'done' ? 'Complete' : 'Step ' + step + ' of ' + total;
+    var active = root.querySelector('.nbs-step.is-active');
+    var input = active && active.querySelector('input');
+    if (input && window.matchMedia('(min-width: 760px)').matches) setTimeout(function () { input.focus(); }, 60);
+    var quiz = document.getElementById('nbs-quiz');
+    var top = quiz.getBoundingClientRect().top;
+    if (top < -40) window.scrollTo({ top: window.pageYOffset + top, behavior: 'smooth' });
+  }
+
+  root.addEventListener('click', function (e) {
+    var tile = e.target.closest('.nbs-tile');
+    var step = e.target.closest('.nbs-step');
+    if (tile && step) {
+      var key = step.dataset.key;
+      if (step.hasAttribute('data-multi')) {
+        tile.classList.toggle('is-selected');
+        answers[key] = [].slice.call(step.querySelectorAll('.nbs-tile.is-selected')).map(function (t) { return t.dataset.value; });
+        step.querySelector('[data-next]').disabled = answers[key].length === 0;
+      } else {
+        step.querySelectorAll('.nbs-tile').forEach(function (t) { t.classList.remove('is-selected'); });
+        tile.classList.add('is-selected');
+        answers[key] = tile.dataset.value;
+        setTimeout(function () { show(current + 1); }, 220);
+      }
+      return;
+    }
+    if (e.target.closest('[data-back]')) { show(Math.max(1, current - 1)); return; }
+    if (e.target.closest('[data-next]')) {
+      if (current === 4 && !checkPostcode()) return;
+      show(current + 1);
+    }
+  });
+
+  /* ---------- Validation ---------- */
+  var RE_POSTCODE = /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i;
+  var RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  function setError(input, bad) {
+    input.classList.toggle('is-invalid', bad);
+    input.closest('.nbs-field').classList.toggle('has-error', bad);
+    return !bad;
+  }
+  function cleanPhone(v) { return v.replace(/[\s\-().]/g, ''); }
+  function validPhone(v) { return /^(?:\+44|0044|0)(?:7\d{9}|[1-3]\d{8,9}|8\d{8,9})$/.test(cleanPhone(v)); }
+  function formatPhone(v) {
+    v = cleanPhone(v);
+    if (NBS_CONFIG.phoneFormat !== 'e164') return v;
+    if (v.indexOf('0044') === 0) return '+44' + v.slice(4);
+    if (v.charAt(0) === '0') return '+44' + v.slice(1);
+    return v;
+  }
+  function formatPostcode(v) {
+    v = v.replace(/\s+/g, '').toUpperCase();
+    return v.length > 3 ? v.slice(0, -3) + ' ' + v.slice(-3) : v;
+  }
+  function checkPostcode() {
+    var el = document.getElementById('nbs-postcode');
+    var ok = setError(el, !RE_POSTCODE.test(el.value.trim()));
+    if (ok) { el.value = formatPostcode(el.value); answers.postcode = el.value; }
+    return ok;
+  }
+  document.getElementById('nbs-postcode').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); if (checkPostcode()) show(5); }
+  });
+  root.querySelectorAll('.nbs-input').forEach(function (el) {
+    el.addEventListener('input', function () { if (el.classList.contains('is-invalid')) setError(el, false); });
+  });
+
+  /* ---------- GHL form bridge ---------- */
+  function norm(s) { return String(s == null ? '' : s).toLowerCase().replace(/[^a-z0-9]/g, ''); }
+
+  function findGhlForm() {
+    if (NBS_CONFIG.ghlFormSelector) {
+      var el = document.querySelector(NBS_CONFIG.ghlFormSelector);
+      return el && el.tagName !== 'FORM' ? (el.querySelector('form') || el) : el;
+    }
+    var forms = document.querySelectorAll('form');
+    for (var i = 0; i < forms.length; i++) {
+      var f = forms[i];
+      if (f.id === 'nbs-contact' || f.closest('#nbs-quiz')) continue;
+      if (f.querySelector('input[name="email"], input[name="phone"], input[type="email"], input[type="tel"]')) return f;
+    }
+    return null;
+  }
+
+  function hideGhlForm(form) {
+    if (!form || NBS_CONFIG.debug || form.dataset.nbsHidden) return;
+    form.dataset.nbsHidden = '1';
+    // Moved off-screen (not display:none) so GHL still validates and submits it normally.
+    form.setAttribute('aria-hidden', 'true');
+    form.style.cssText += ';position:absolute!important;left:-10000px!important;top:0!important;width:320px!important;opacity:0!important;pointer-events:none!important;';
+  }
+
+  function describeFields(form) {
+    var rows = [];
+    form.querySelectorAll('input, select, textarea').forEach(function (el) {
+      if (el.type === 'hidden') return;
+      rows.push({ name: el.name, 'data-q': el.getAttribute('data-q'), id: el.id, type: el.type, value: el.value, label: labelText(el) });
+    });
+    return rows;
+  }
+
+  function labelText(el) {
+    var l = el.closest('label') || (el.id && document.querySelector('label[for="' + el.id + '"]'));
+    return l ? l.textContent.trim() : (el.getAttribute('aria-label') || el.placeholder || '');
+  }
+
+  function fieldsByName(form, name) {
+    var sel = '[name="' + name + '"], [data-q="' + name + '"]';
+    var found = [].slice.call(form.querySelectorAll(sel));
+    if (!found.length) { try { found = [].slice.call(form.querySelectorAll('#' + CSS.escape(name))); } catch (e) {} }
+    return found;
+  }
+
+  function fire(el, types) {
+    types.forEach(function (t) { el.dispatchEvent(new Event(t, { bubbles: true })); });
+  }
+
+  function setNativeValue(el, value) {
+    var proto = el.tagName === 'TEXTAREA' ? HTMLTextAreaElement.prototype
+      : el.tagName === 'SELECT' ? HTMLSelectElement.prototype : HTMLInputElement.prototype;
+    var desc = Object.getOwnPropertyDescriptor(proto, 'value');
+    if (desc && desc.set) desc.set.call(el, value); else el.value = value;
+    fire(el, ['input', 'keyup', 'change', 'blur']);
+  }
+
+  function matches(el, wanted) {
+    var targets = wanted.map(norm);
+    return targets.indexOf(norm(el.value)) > -1 || targets.indexOf(norm(labelText(el))) > -1;
+  }
+
+  function writeField(form, name, value) {
+    var els = fieldsByName(form, name);
+    if (!els.length) { log('Field not found in GHL form:', name); return false; }
+    var list = Array.isArray(value) ? value : [value];
+    var text = list.join(', ');
+    var first = els[0];
+
+    if (first.type === 'checkbox' || first.type === 'radio') {
+      var hit = false;
+      els.forEach(function (el) {
+        var want = matches(el, list);
+        if (want !== el.checked) { el.click(); if (el.checked !== want) { el.checked = want; fire(el, ['change']); } }
+        hit = hit || want;
+      });
+      if (!hit) log('No option matched for', name, list, '→ options:', els.map(function (e) { return e.value; }));
+      return hit;
+    }
+    if (first.tagName === 'SELECT') {
+      var opts = [].slice.call(first.options);
+      if (first.multiple) {
+        opts.forEach(function (o) { o.selected = list.map(norm).indexOf(norm(o.value)) > -1 || list.map(norm).indexOf(norm(o.text)) > -1; });
+        fire(first, ['input', 'change']);
+        return true;
+      }
+      var opt = opts.filter(function (o) { return norm(o.value) === norm(list[0]) || norm(o.text) === norm(list[0]); })[0]
+        || opts.filter(function (o) { return norm(o.text).indexOf(norm(list[0])) > -1 && norm(list[0]); })[0];
+      if (!opt) { log('No dropdown option matched for', name, list[0]); return false; }
+      setNativeValue(first, opt.value);
+      return true;
+    }
+    els.forEach(function (el) { setNativeValue(el, text); });
+    return true;
+  }
+
+  function tickConsent(form) {
+    form.querySelectorAll('input[type="checkbox"]').forEach(function (el) {
+      if (el.checked) return;
+      var t = norm(labelText(el) + ' ' + el.name);
+      if (/terms|consent|agree|privacy|gdpr|marketing|contact/.test(t)) { el.click(); if (!el.checked) { el.checked = true; fire(el, ['change']); } }
+    });
+  }
+
+  function summaryText(a) {
+    return [
+      'Services: ' + a.services.join(', '),
+      'Area size: ' + (a.size || '-'),
+      'Timeframe: ' + (a.timeframe || '-'),
+      'Postcode: ' + (a.postcode || '-'),
+      'Offer: 10% OFF (limited time)'
+    ].join('\n');
+  }
+
+  function fillGhl(form, a) {
+    var map = NBS_CONFIG.fields;
+    var values = {
+      full_name: a.full_name, first_name: a.first_name, last_name: a.last_name,
+      phone: a.phone, email: a.email, postcode: a.postcode,
+      services: a.services, size: a.size, timeframe: a.timeframe, summary: summaryText(a)
+    };
+    Object.keys(map).forEach(function (key) {
+      (map[key] || []).forEach(function (name) {
+        if (values[key] == null || values[key] === '') return;
+        writeField(form, name, values[key]);
+      });
+    });
+    if (NBS_CONFIG.tickConsent) tickConsent(form);
+    log('Filled GHL form:', describeFields(form));
+  }
+
+  function submitGhl(form) {
+    var btn = form.querySelector('button[type="submit"], input[type="submit"]') || form.querySelector('button');
+    if (btn) { btn.disabled = false; btn.click(); }
+    else if (form.requestSubmit) form.requestSubmit();
+    else form.submit();
+  }
+
+  function ghlErrors(form) {
+    var errs = [].slice.call(form.querySelectorAll('.error, .field-error, .error-message, .invalid-feedback, [class*="error"]'))
+      .filter(function (e) { return e.textContent.trim() && e.offsetParent !== null; })
+      .map(function (e) { return e.textContent.trim(); });
+    return errs;
+  }
+
+  /* ---------- Submit ---------- */
+  var sending = false;
+  var submitBtn = document.getElementById('nbs-submit');
+  var submitLabel = submitBtn.innerHTML;
+
+  document.getElementById('nbs-contact').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (sending) return;
+    var nameEl = document.getElementById('nbs-name');
+    var phoneEl = document.getElementById('nbs-phone');
+    var emailEl = document.getElementById('nbs-email');
+    var ok = [
+      setError(nameEl, nameEl.value.trim().length < 2),
+      setError(phoneEl, !validPhone(phoneEl.value)),
+      setError(emailEl, !RE_EMAIL.test(emailEl.value.trim()))
+    ].every(Boolean);
+    if (!ok) { var bad = root.querySelector('.is-invalid'); if (bad) bad.focus(); return; }
+
+    var parts = nameEl.value.trim().replace(/\s+/g, ' ').split(' ');
+    answers.full_name = parts.join(' ');
+    answers.first_name = parts[0];
+    answers.last_name = parts.slice(1).join(' ');
+    answers.phone = formatPhone(phoneEl.value);
+    answers.email = emailEl.value.trim();
+    log('Answers:', answers);
+
+    var form = findGhlForm();
+    if (!form) {
+      console.error('[NBS] No GHL form found on this page. Add the native Form element to the page (not an iframe embed) or set NBS_CONFIG.ghlFormSelector.');
+      alert('Sorry, something went wrong sending your details. Please try again in a moment.');
+      return;
+    }
+
+    sending = true;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="nbs-spinner"></span> Sending…';
+
+    fillGhl(form, answers);
+    if (NBS_CONFIG.fireFacebookLead && typeof window.fbq === 'function') window.fbq('track', 'Lead');
+    try { window.dispatchEvent(new CustomEvent('nbs:lead', { detail: answers })); } catch (err) {}
+
+    // Give GHL's form a tick to register the new values before submitting.
+    setTimeout(function () {
+      submitGhl(form);
+      setTimeout(function () {
+        var errs = ghlErrors(form);
+        if (errs.length) {
+          // GHL rejected something (usually a required field that isn't mapped). Let them retry.
+          console.warn('[NBS] GHL form reported errors:', errs);
+          if (NBS_CONFIG.debug) alert('GHL validation errors:\n' + errs.join('\n'));
+          sending = false;
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = submitLabel;
+          alert('Sorry, we couldn\'t send your details. Please check them and try again.');
+          return;
+        }
+        // Still on the page: GHL either showed its inline thank-you or needs a redirect.
+        if (NBS_CONFIG.redirectUrl) { window.location.href = NBS_CONFIG.redirectUrl; return; }
+        show('done');
+        document.getElementById('nbs-reassure').style.display = 'none';
+      }, NBS_CONFIG.successTimeoutMs);
+    }, 150);
+  });
+
+  /* ---------- Init ---------- */
+  function initForm(tries) {
+    var form = findGhlForm();
+    if (form) {
+      hideGhlForm(form);
+      if (NBS_CONFIG.debug) {
+        console.log('[NBS] GHL form found. Its fields (use "name" in NBS_CONFIG.fields):');
+        console.table(describeFields(form));
+      }
+      return;
+    }
+    if (tries > 0) setTimeout(function () { initForm(tries - 1); }, 500);
+    else if (NBS_CONFIG.debug) console.warn('[NBS] No GHL form found on the page.');
+  }
+  initForm(20);
+  show(1);
+})();
+</script>
+
+<!--
+  ============================================================
+  04 · PROOF STRIP (sits directly under the quiz)
+  ============================================================
+-->
+<div class="nbs">
+  <section class="nbs-proof">
+    <div class="nbs-wrap">
+      <div class="nbs-proof-grid">
+        <div><div class="nbs-proof-num">218</div><div class="nbs-proof-label">Five-Star<br>Google Reviews</div></div>
+        <div><div class="nbs-proof-num">5.0<span class="nbs-hl">★</span></div><div class="nbs-proof-label">Rated On<br>Google</div></div>
+        <div><div class="nbs-proof-num">10/10</div><div class="nbs-proof-label">Rated On<br>Checkatrade</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--
+  ============================================================
+  05 · RECENT INSTALLS
+  Swap img srcs for your GHL media URLs. To add more jobs, copy a whole
+  .nbs-work-card block.
+  ============================================================
+-->
+<div class="nbs">
+  <section class="nbs-section nbs-light">
+    <div class="nbs-wrap">
+      <h2 class="nbs-title">Our Recent <span class="nbs-hl">Installs</span></h2>
+      <p class="nbs-sub">Real driveways, installed by our own team across Greater Manchester &amp; Cheshire.</p>
+      <div class="nbs-work-grid">
+        <article class="nbs-work-card">
+          <div class="nbs-work-img">
+            <img src="assets/job-resin-driveway.webp" alt="Resin bound driveway with dark block paved edging" width="800" height="1059" loading="lazy">
+            <span class="nbs-work-tag">Resin Driveway</span>
+          </div>
+          <div class="nbs-work-body">
+            <h3>Resin Bound Driveway</h3>
+            <ul>
+              <li>Smooth, seamless finish with no loose stones</li>
+              <li>Permeable, so rainwater drains straight through</li>
+              <li>Wide choice of colours and blends</li>
+            </ul>
+          </div>
+        </article>
+        <article class="nbs-work-card">
+          <div class="nbs-work-img">
+            <img src="assets/job-tarmac-block-edging.webp" alt="New tarmac driveway with brindle block paved edging" width="650" height="864" loading="lazy">
+            <span class="nbs-work-tag">Tarmac Driveway</span>
+          </div>
+          <div class="nbs-work-body">
+            <h3>Tarmac With Block Paved Edging</h3>
+            <ul>
+              <li>Hard-wearing surface built for daily use</li>
+              <li>Cost-effective, especially for larger areas</li>
+              <li>Crisp paved edging for a finished look</li>
+            </ul>
+          </div>
+        </article>
+        <article class="nbs-work-card">
+          <div class="nbs-work-img">
+            <img src="assets/job-resin-bungalow.webp" alt="Resin driveway with light paved edging on a bungalow" width="800" height="1000" loading="lazy">
+            <span class="nbs-work-tag">Resin + Edging</span>
+          </div>
+          <div class="nbs-work-body">
+            <h3>Resin With Paved Edging</h3>
+            <ul>
+              <li>Full front transformation, wall to wall</li>
+              <li>Light paved edging frames the drive</li>
+              <li>Clean, low-maintenance finish</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <div class="nbs-chips">
+        <span class="nbs-chip">Resin</span><span class="nbs-chip">Tarmac</span><span class="nbs-chip">Block Paving</span>
+        <span class="nbs-chip">Porcelain</span><span class="nbs-chip">Paved Edging</span><span class="nbs-chip">Artificial Turf</span>
+      </div>
+      <div class="nbs-cta-row">
+        <a class="nbs-btn" href="#nbs-quiz">Yes! I Want A Free Quote →</a>
+        <p class="nbs-cta-note">Takes 30 seconds · 10% off for a limited time</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--
+  ============================================================
+  06 · WHY CHOOSE US
+  ============================================================
+-->
+<div class="nbs">
+  <section class="nbs-section nbs-white-bg">
+    <div class="nbs-wrap">
+      <h2 class="nbs-title">Why Homeowners Choose <span class="nbs-hl">North Bound</span></h2>
+      <div class="nbs-why-grid">
+        <div class="nbs-why-item">
+          <div class="nbs-why-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/></svg></div>
+          <div><h3>218 Five-Star Reviews</h3><p>Rated 5/5 on Google and 10/10 on Checkatrade by homeowners just like you.</p></div>
+        </div>
+        <div class="nbs-why-item">
+          <div class="nbs-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-6 7 6v11"/><path d="M9 21v-6h6v6"/></svg></div>
+          <div><h3>One Team, The Whole Job</h3><p>Driveway, edging, patio and turf, all done by one team. No juggling different trades.</p></div>
+        </div>
+        <div class="nbs-why-item">
+          <div class="nbs-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div><h3>Local To You</h3><p>Based in Manchester and covering all of Greater Manchester &amp; Cheshire.</p></div>
+        </div>
+        <div class="nbs-why-item">
+          <div class="nbs-why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></svg></div>
+          <div><h3>Free Quote + 10% Off</h3><p>No-obligation quote, plus 10% off your installation for a limited time.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--
+  ============================================================
+  06b · MEET THE TEAM (office photos: builds trust vs "cowboy" installers)
+  Swap img srcs for your GHL media URLs.
+  ============================================================
+-->
+<div class="nbs">
+  <section class="nbs-section nbs-light">
+    <div class="nbs-wrap">
+      <h2 class="nbs-title">A Real Local Team, <span class="nbs-hl">Not A Cowboy Outfit</span></h2>
+      <p class="nbs-sub">We're a proper Manchester business with our own office and in-house team, so you'll always know exactly who you're dealing with.</p>
+      <div class="nbs-team-grid">
+        <img src="assets/office-sign.webp" alt="The North Bound Surfacing office in Manchester" width="800" height="1000" loading="lazy">
+        <img src="assets/office-team.webp" alt="The North Bound Surfacing team at work in the office" width="800" height="1000" loading="lazy">
+      </div>
+      <ul class="nbs-team-points">
+        <li><b>Our own office team</b> handles your quote from first call to finished driveway</li>
+        <li><b>218 five-star Google reviews</b> and a <b>10/10 Checkatrade</b> rating</li>
+        <li><b>Covering all of Greater Manchester &amp; Cheshire</b></li>
+      </ul>
+      <div class="nbs-cta-row">
+        <a class="nbs-btn" href="#nbs-quiz">Get My Free Quote →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--
+  ============================================================
+  07 · REVIEWS
+  REPLACE the three placeholder reviews with real Google reviews
+  (copy them word for word, first name + initial is fine).
+  Set the "Read all reviews" link to the Google Business profile.
+  ============================================================
+-->
+<div class="nbs">
+  <section class="nbs-section nbs-white-bg">
+    <div class="nbs-wrap">
+      <h2 class="nbs-title">What Our <span class="nbs-hl">Customers</span> Say</h2>
+      <div class="nbs-rating-row">
+        <div class="nbs-rating-card">
+          <div class="nbs-google"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></div>
+          <div class="nbs-rating-score">5.0<small>/5</small></div>
+          <div class="nbs-stars">★★★★★</div>
+          <div class="nbs-rating-meta">218 five-star reviews</div>
+        </div>
+        <div class="nbs-rating-card">
+          <div class="nbs-checkatrade"><i>✓</i>Checkatrade</div>
+          <div class="nbs-rating-score">10<small>/10</small></div>
+          <div class="nbs-stars">★★★★★</div>
+          <div class="nbs-rating-meta">Checkatrade rating</div>
+        </div>
+      </div>
+      <div class="nbs-review-list">
+        <div class="nbs-review">
+          <div class="nbs-review-head"><div class="nbs-avatar">A</div><div><div class="nbs-review-name">[Customer name]</div><div class="nbs-review-src">Google review · ★★★★★</div></div></div>
+          <p>[Paste a real Google review here. Ideally one that mentions the finish, the team and the price.]</p>
+        </div>
+        <div class="nbs-review">
+          <div class="nbs-review-head"><div class="nbs-avatar">B</div><div><div class="nbs-review-name">[Customer name]</div><div class="nbs-review-src">Google review · ★★★★★</div></div></div>
+          <p>[Paste a real Google review here. Ideally one about a resin driveway.]</p>
+        </div>
+        <div class="nbs-review">
+          <div class="nbs-review-head"><div class="nbs-avatar">C</div><div><div class="nbs-review-name">[Customer name]</div><div class="nbs-review-src">Google review · ★★★★★</div></div></div>
+          <p>[Paste a real Google review here. Ideally one about a tarmac driveway or a full garden job.]</p>
+        </div>
+      </div>
+      <div class="nbs-cta-row">
+        <a class="nbs-btn" href="#nbs-quiz">Get My Free Quote →</a>
+        <p class="nbs-cta-note"><a href="#" target="_blank" rel="noopener" style="color:inherit">Read all 218 reviews on Google</a></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--
+  ============================================================
+  08 · HOW IT WORKS
+  ============================================================
+-->
+<div class="nbs">
+  <section class="nbs-section nbs-dark">
+    <div class="nbs-wrap">
+      <h2 class="nbs-title">Your New Driveway In <span class="nbs-hl">3 Simple Steps</span></h2>
+      <div class="nbs-steps">
+        <div class="nbs-step-card"><h3>Take The 30-Second Survey</h3><p>Tell us what you're after and where you are. It takes less than a minute.</p></div>
+        <div class="nbs-step-card"><h3>Get Your Free Quote</h3><p>We'll call to arrange a visit, measure up and give you a clear, no-obligation price with 10% off.</p></div>
+        <div class="nbs-step-card"><h3>Enjoy Your New Driveway</h3><p>Our team installs everything and leaves your property clean and tidy.</p></div>
+      </div>
+      <div class="nbs-cta-row">
+        <a class="nbs-btn" href="#nbs-quiz">Start My Free Quote →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--
+  ============================================================
+  09 · FAQ
+  ============================================================
+-->
+<div class="nbs">
+  <section class="nbs-section nbs-light">
+    <div class="nbs-wrap nbs-narrow">
+      <h2 class="nbs-title">Frequently Asked <span class="nbs-hl">Questions</span></h2>
+      <div class="nbs-faq">
+        <details>
+          <summary>How much does a new driveway cost?</summary>
+          <p>Every driveway is different. The price depends on the size, the surface you choose and the groundwork needed. That's why we measure up and give you a free, no-obligation quote. Book yours now and you'll also get 10% off.</p>
+        </details>
+        <details>
+          <summary>Resin or tarmac, which is best for me?</summary>
+          <p>Resin gives a smooth, decorative finish in a wide range of colours, and rainwater drains through it. Tarmac is hard-wearing and cost-effective, especially for larger areas. Not sure? We'll talk you through both and recommend what suits your home and budget.</p>
+        </details>
+        <details>
+          <summary>Do I need planning permission?</summary>
+          <p>In most cases, no. Resin bound surfaces are permeable, which is why they rarely need permission. For other surfaces we make sure water drains correctly. We'll advise you on anything that applies to your property when we quote.</p>
+        </details>
+        <details>
+          <summary>Can you do the edging, patio and turf too?</summary>
+          <p>Yes. We install resin, tarmac, block paving, porcelain, paved edging and artificial turf, so one team can handle the whole job.</p>
+        </details>
+        <details>
+          <summary>What areas do you cover?</summary>
+          <p>We cover all of Greater Manchester and Cheshire. Pop your postcode into the survey above and we'll confirm.</p>
+        </details>
+        <details>
+          <summary>Is the quote really free?</summary>
+          <p>Yes. Your quote is 100% free with no obligation to go ahead. And for a limited time, you'll get 10% off your installation.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--
+  ============================================================
+  10 · FINAL CTA
+  Swap the background image URL for your GHL media URL.
+  ============================================================
+-->
+<div class="nbs">
+  <section class="nbs-section nbs-dark nbs-final">
+    <div class="nbs-final-bg" style="background-image:url('assets/job-resin-driveway.webp')"></div>
+    <div class="nbs-wrap nbs-narrow">
+      <h2>Ready For A Driveway You'll <span class="nbs-hl">Love Coming Home To?</span></h2>
+      <p>Join 218 five-star customers across Greater Manchester &amp; Cheshire.</p>
+      <div class="nbs-offer-pill">🔥 10% OFF For A Limited Time</div>
+      <div class="nbs-cta-row">
+        <a class="nbs-btn" href="#nbs-quiz">Claim My Free Quote + 10% Off →</a>
+        <p class="nbs-cta-note">Free · No obligation · Takes 30 seconds</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!--
+  ============================================================
+  11 · FOOTER + STICKY MOBILE CTA + smooth scrolling
+  Swap the logo src for your GHL media URL of assets/logo-stacked-white.png
+  and set the Privacy Policy link.
+  ============================================================
+-->
+<div class="nbs">
+  <footer class="nbs-footer">
+    <div class="nbs-wrap">
+      <img src="assets/logo-stacked-white.png" alt="North Bound Surfacing" width="800" height="498" loading="lazy">
+      <p>Resin &amp; Tarmac Driveways · Block Paving · Porcelain · Artificial Turf</p>
+      <p>Covering Greater Manchester &amp; Cheshire</p>
+      <p>© <span id="nbs-year">2026</span> North Bound Surfacing · <a href="#" target="_blank" rel="noopener">Privacy Policy</a></p>
+    </div>
+  </footer>
+  <div class="nbs-sticky" id="nbs-sticky">
+    <a class="nbs-btn" href="#nbs-quiz">Get My Free Quote + 10% Off →</a>
+  </div>
+</div>
+<script>
+(function () {
+  var y = document.getElementById('nbs-year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // Smooth-scroll every "#nbs-quiz" button to the quiz.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#nbs-quiz"]');
+    if (!a) return;
+    var quiz = document.getElementById('nbs-quiz');
+    if (!quiz) return;
+    e.preventDefault();
+    window.scrollTo({ top: quiz.getBoundingClientRect().top + window.pageYOffset - 10, behavior: 'smooth' });
+  });
+
+  // Sticky mobile CTA: show once the visitor has scrolled past the quiz.
+  var sticky = document.getElementById('nbs-sticky');
+  var quiz = document.getElementById('nbs-quiz');
+  if (!sticky || !quiz || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (entries) {
+    var e = entries[0];
+    sticky.classList.toggle('is-visible', !e.isIntersecting && e.boundingClientRect.top < 0);
+  }).observe(quiz);
+})();
+</script>
+
+</body>
+</html>
