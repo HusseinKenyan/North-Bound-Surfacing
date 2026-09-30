@@ -8,9 +8,10 @@
 <style>html,body{margin:0;padding:0;background:#0F0F0F}</style>
 <!--
   ============================================================
-  00 · GLOBAL HEAD (font + all styles)
-  GHL: Page Settings > Tracking Code > HEADER
-  One font family (Montserrat), system font for body text.
+  00 · GLOBAL HEAD (font + all styles for sections 01–04)
+  GHL: Funnel step > Settings > Tracking Code > HEADER (paste the whole file).
+  One web font (Montserrat 700/800/900) for headings; system font for body text.
+  Brand colours live in :root below. Change them there and everything updates.
   ============================================================
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,11 +36,22 @@
     --nbs-body: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   }
 
+  /* ---------- Base ----------
+     Scoped to .nbs so GHL's own styles can't leak in or out.
+     :where() keeps the resets at low priority, so the component
+     classes below always win, while still beating GHL's bare
+     element rules (h1 {...}, p {...}, button {...}). */
   .nbs, .nbs * { box-sizing: border-box; }
-  .nbs { font-family: var(--nbs-body); color: var(--nbs-ink); line-height: 1.5; -webkit-font-smoothing: antialiased; }
-  .nbs img { max-width: 100%; display: block; }
-  .nbs h1, .nbs h2, .nbs h3 { font-family: var(--nbs-head); margin: 0; line-height: 1.15; letter-spacing: -.01em; }
-  .nbs p { margin: 0; }
+  .nbs { font-family: var(--nbs-body); font-size: 16px; font-weight: 400; color: var(--nbs-ink); line-height: 1.5; text-align: left; text-transform: none; letter-spacing: normal; -webkit-font-smoothing: antialiased; }
+  .nbs :where(h1, h2, h3, p, figure, figcaption, ul, li, label, span, small, b) {
+    margin: 0; padding: 0; color: inherit; font-family: inherit; font-size: inherit; font-weight: inherit;
+    line-height: inherit; letter-spacing: inherit; text-transform: inherit; text-align: inherit; background: none; border: 0;
+  }
+  .nbs :where(b) { font-weight: 700; }
+  .nbs :where(h1, h2, h3) { font-family: var(--nbs-head); line-height: 1.15; letter-spacing: -.01em; }
+  .nbs :where(button, input) { font-family: inherit; letter-spacing: normal; text-transform: none; }
+  .nbs :where(a) { color: inherit; }
+  .nbs img { max-width: 100%; display: block; border: 0; }
   .nbs-wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; }
   .nbs-section { padding: 48px 0; }
   .nbs-hl { color: var(--nbs-orange); }
@@ -57,6 +69,7 @@
   }
   .nbs-btn:hover { background: var(--nbs-orange-hover); }
   .nbs-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--nbs-orange-deep); }
+  .nbs-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
   .nbs-btn[disabled] { opacity: .45; cursor: not-allowed; }
   .nbs-btn-block { width: 100%; }
   .nbs-cta-row { text-align: center; margin-top: 28px; }
@@ -155,7 +168,7 @@
   .nbs-done-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--nbs-orange); color: var(--nbs-black); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 32px; font-weight: 900; }
   .nbs-done p { color: var(--nbs-muted-dark); margin-top: 10px; }
 
-  /* ---------- 03 Recent installs (swipe row, no JS) ---------- */
+  /* ---------- 03 Before & after (swipe row on mobile, grid on desktop; no JS) ---------- */
   .nbs-installs { background: #fff; }
   .nbs-gallery { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 24px -16px 0; padding: 0 16px 8px; scrollbar-width: none; }
   .nbs-gallery::-webkit-scrollbar { display: none; }
