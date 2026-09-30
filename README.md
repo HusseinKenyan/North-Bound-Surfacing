@@ -8,7 +8,7 @@ pipelines and redirects run as normal.
 
 ```
 src/                        ← EDIT HERE (the source of truth)
-├── head.html               font links + stylesheet link
+├── head.html               font links
 ├── styles/main.css         ALL the CSS (brand colours in :root at the top)
 ├── scripts/quiz.js         quiz logic + GHL bridge (NBS_CONFIG field mapping at the top)
 ├── scripts/page.js         smooth scroll, sticky mobile CTA, footer year
@@ -20,8 +20,9 @@ src/                        ← EDIT HERE (the source of truth)
 └── images/                 compressed WebP images used by the page
 
 dist/                       ← GENERATED: never edit, copy from here
-├── ghl/                    paste-ready GHL files (CSS, JS and images inlined)
-│   ├── 00-head.html        → Settings → Tracking Code → Header
+├── ghl/                    paste-ready GHL files
+│   ├── 00-styles.css       → Settings → Custom CSS          (all the CSS)
+│   ├── 00-head.html        → Settings → Tracking Code → Header (font link)
 │   ├── 01-hero.html        → Section 1 Custom Code element
 │   ├── 02-quiz.html        → Section 2 Custom Code element
 │   ├── 03-before-after.html→ Section 3 Custom Code element
@@ -58,7 +59,9 @@ npm test          # builds, then runs the browser tests
 
 ## Putting it into GHL
 
-1. Paste `dist/ghl/00-head.html` into the funnel step's **Settings → Tracking Code → Header**.
+1. In the funnel step's **Settings**:
+   - paste `dist/ghl/00-styles.css` into **Custom CSS**;
+   - paste `dist/ghl/00-head.html` into **Tracking Code → Header** (loads the heading font).
 2. Add 4 full-width sections, each with one **Custom Code** element, and paste `dist/ghl/01`–`04` in order.
    Set every section, row and column to **0 padding and 0 margin** so the sections sit edge to edge.
 3. Add the native GHL **Form** element in a 5th section at the very bottom (see below). The script hides it.
