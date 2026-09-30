@@ -19,6 +19,28 @@ It uses a styled multi-step quiz (the "fake form") that fills in and submits a *
 
 Each section file goes into its own GHL **Custom Code** element, in order.
 
+## Page sections
+
+| # | File | What's in it | Background |
+|---|---|---|---|
+| — | `00-global-head.html` | Montserrat font + all CSS (brand colours in `:root`) | — |
+| 1 | `01-hero.html` | Logo + Google rating bar · orange "10% OFF – Limited Time Only" bar · stars kicker · headline with **10% OFF** · services line · "Free quote in 30 seconds" · hero photo with LIMITED TIME tag · scrolling proof ticker | Dark |
+| 2 | `02-quiz.html` | 5-step quiz: services (multi-select) → area size → timeframe → postcode → name/phone/email · progress bar · GHL bridge script | Dark |
+| 3 | `03-recent-installs.html` | "Real Before & After Results": 6 before/after pairs (swipe on mobile, 3 × 2 on desktop) · "Yes! I Want A Free Quote" button | White |
+| 4 | `04-reviews.html` | Google 5.0 / Checkatrade 10/10 cards · 6 real Google reviews (swipe on mobile, 3 × 2 on desktop) · "Claim My 10% Off Quote" button · footer line with Privacy Policy · sticky mobile CTA | Light grey |
+
+### Pasting into GHL
+
+1. **Header code:** paste all of `00-global-head.html` into the funnel step's **Settings → Tracking Code → Header**.
+2. **Sections:** add 4 full-width GHL sections, each with one **Custom Code** element, and paste files 01–04 in order.
+   Set each section/row/column to **full width with 0 padding and 0 margin** so the sections sit edge to edge.
+3. **Hidden form:** add the native GHL **Form** element in a 5th section at the very bottom (see *GHL setup*).
+4. **Images:** upload `assets/*.webp` to GHL Media and replace each `src="assets/…"` with its media URL
+   (`01-hero.html`: logo + hero; `03-recent-installs.html`: 6 before/after images).
+
+The CSS is scoped to `.nbs` and hardened against GHL's global styles (tested by injecting hostile heading, paragraph,
+button, link and image rules: no visual change).
+
 ## Speed
 
 - One web font (Montserrat, 3 weights) for headings; body text uses the phone's system font.
