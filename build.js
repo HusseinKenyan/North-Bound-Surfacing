@@ -28,7 +28,7 @@ const FILES = {
   'styles.css': ['STYLES · paste into GHL: Settings → Custom CSS', ''],
   '1-hero.html': ['SECTION 1 · HERO · paste into a GHL Custom Code element', FONT],
   '2-quiz.html': ['SECTION 2 · QUIZ · paste into a GHL Custom Code element', ''],
-  '3-before-after.html': ['SECTION 3 · BEFORE & AFTER · paste into a GHL Custom Code element', ''],
+  '3-results.html': ['SECTION 3 · RESULTS · paste into a GHL Custom Code element', ''],
   '4-reviews.html': ['SECTION 4 · REVIEWS · paste into a GHL Custom Code element', ''],
 };
 

@@ -7,12 +7,12 @@
 | `styles.css` | Funnel step → **Settings → Custom CSS** |
 | `1-hero.html` | Section 1 → **Custom Code** element |
 | `2-quiz.html` | Section 2 → **Custom Code** element |
-| `3-before-after.html` | Section 3 → **Custom Code** element |
+| `3-results.html` | Section 3 → **Custom Code** element |
 | `4-reviews.html` | Section 4 → **Custom Code** element |
 | *form: coming next* | |
 
 - Set every GHL section, row and column to **full width, 0 padding, 0 margin** so the sections sit edge to edge.
-- Images are built into the files, so there's nothing to upload. `3-before-after.html` is large (~300KB of photos),
+- Images are built into the files, so there's nothing to upload. `3-results.html` is large (~300KB of photos),
   so GHL's editor may be slow to open it. That's normal.
 - Open `preview.html` in a browser to see the whole page.
 
@@ -20,7 +20,7 @@
 
 1. **Hero:** logo and Google rating, "10% OFF – Limited Time Only" bar, headline, hero photo, scrolling ratings strip.
 2. **Quiz:** services → area size → timeframe → postcode → name, phone and email.
-3. **Before & after:** 6 real before/after pairs and a quote button.
+3. **Real results:** 5 before/after pairs plus tarmac and artificial turf installs, and a quote button.
 4. **Reviews:** Google 5.0 and Checkatrade 10/10, 6 real Google reviews, quote button, footer, sticky mobile button.
 
 ## Other folders
