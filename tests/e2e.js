@@ -6,6 +6,7 @@
  *   2. The quiz validates bad input.
  *   3. A full quiz run fills and submits the (mock) hidden GHL form with the right values.
  *   4. The page's styles survive hostile global CSS like GHL themes inject.
+ *   5. Layout follows each section's width, not the browser's (GHL's mobile preview).
  *
  * Usage: npm test   (needs the playwright package: npm install)
  */
@@ -94,7 +95,7 @@ async function run(name, fn) {
       const s = getComputedStyle(el);
       return [s.color, s.fontFamily, s.textTransform, s.marginTop, s.backgroundColor, s.borderTopWidth].join('|');
     });
-    const targets = ['.nbs-hero h1', '.nbs-q-hint', '.nbs-sub', '.nbs-btn', '.nbs-tile', '.nbs-back', '.nbs-ba figcaption', '.nbs-hero-media img', '.nbs-review p'];
+    const targets = ['.nbs-hero h1', '.nbs-q-hint', '.nbs-sub', '.nbs-btn', '.nbs-tile', '.nbs-back', '.nbs-ba figcaption', '.nbs-ba img', '.nbs-review p'];
     const before = await Promise.all(targets.map(style));
     await page.addStyleTag({ content: `
       body { text-align: center; font-family: serif; }
@@ -103,6 +104,32 @@ async function run(name, fn) {
       a { color: green; } img { border: 5px solid lime; }` });
     const after = await Promise.all(targets.map(style));
     targets.forEach((t, i) => assert.equal(after[i], before[i], `${t} changed`));
+  });
+
+  await run('narrow section on a wide screen uses the mobile layout (GHL mobile preview)', async () => {
+    const page = await (await browser.newContext({ viewport: { width: 1366, height: 900 } })).newPage();
+    await page.goto(url('preview.html'));
+    const layout = () => page.evaluate(() => ({
+      gallery: getComputedStyle(document.querySelector('.nbs-gallery')).display,
+      reviews: getComputedStyle(document.querySelector('.nbs-review-list')).display,
+      h1: parseFloat(getComputedStyle(document.querySelector('.nbs-hero h1')).fontSize),
+      card: document.querySelector('.nbs-ba').getBoundingClientRect().width,
+    }));
+    const wide = await layout();
+    assert.equal(wide.gallery, 'grid', 'desktop should show the results grid');
+    await page.addStyleTag({ content: 'body { width: 390px; margin: 0 auto; overflow-x: hidden; }' });
+    const narrow = await layout();
+    assert.equal(narrow.gallery, 'flex', 'narrow section should use the swipe row');
+    assert.equal(narrow.reviews, 'flex', 'narrow section should use the review swipe row');
+    assert.ok(narrow.h1 <= 32, `headline too big in a narrow section: ${narrow.h1}px`);
+    assert.ok(narrow.card >= 300, `result photos too small in a narrow section: ${narrow.card}px wide`);
+  });
+
+  await run('quiz starts near the top on a phone', async () => {
+    const page = await newPage();
+    await page.goto(url('preview.html'));
+    const top = await page.$eval('.nbs-quiz .nbs-tile', (el) => el.getBoundingClientRect().top);
+    assert.ok(top < 844, `first quiz answer is below the fold (${Math.round(top)}px)`);
   });
 
   await browser.close();

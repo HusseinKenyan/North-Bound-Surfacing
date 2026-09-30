@@ -7,11 +7,11 @@
  *   1. Tokens (:root)
  *   2. Base / resets
  *   3. Buttons, stars, badges
- *   4. Section 01: Hero
+ *   4. Section 01: Hero (photo background) + ratings ticker
  *   5. Section 02: Quiz
  *   6. Section 03: Results (before & afters + recent installs)
  *   7. Section 04: Reviews + footer + sticky CTA
- *   8. Responsive (desktop >= 760px, small phones <= 380px)
+ *   8. Responsive: container queries on each section's width (wide >= 760px, narrow <= 380px)
  */
 
 :root {
@@ -38,6 +38,9 @@
    classes below always win, while still beating GHL's bare
    element rules (h1 {...}, p {...}, button {...}). */
 .nbs, .nbs * { box-sizing: border-box; }
+/* Layout responds to each section's own width (container queries), not the browser window,
+   so it is correct on phones AND in GHL's mobile preview / narrow embeds. */
+.nbs:not(.nbs-fixed) { container-type: inline-size; }
 .nbs { font-family: var(--nbs-body); font-size: 16px; font-weight: 400; color: var(--nbs-ink); line-height: 1.5; text-align: left; text-transform: none; letter-spacing: normal; -webkit-font-smoothing: antialiased; }
 .nbs :where(h1, h2, h3, p, figure, figcaption, ul, li, label, span, small, b) {
   margin: 0; padding: 0; color: inherit; font-family: inherit; font-size: inherit; font-weight: inherit;
@@ -51,7 +54,7 @@
 .nbs-wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; }
 .nbs-section { padding: 48px 0; }
 .nbs-hl { color: var(--nbs-orange); }
-.nbs-title { font-size: clamp(26px, 6vw, 38px); font-weight: 800; text-align: center; }
+.nbs-title { font-size: clamp(26px, 6vw, 38px); font-size: clamp(26px, 6cqi, 38px); font-weight: 800; text-align: center; }
 .nbs-sub { text-align: center; color: var(--nbs-muted); margin-top: 8px; font-size: 16px; }
 
 /* ---------- Buttons ---------- */
@@ -88,23 +91,15 @@
 .nbs-header-rating .nbs-stars { font-size: 11px; }
 .nbs-offer-bar { background: var(--nbs-orange); color: var(--nbs-black); text-align: center; font-family: var(--nbs-head); font-weight: 800; font-size: 15px; padding: 9px 16px; }
 .nbs-offer-bar span { text-decoration: underline; text-underline-offset: 3px; }
-.nbs-hero { background: var(--nbs-charcoal); color: #fff; padding: 22px 0 0; text-align: center; }
+.nbs-hero { background-color: var(--nbs-charcoal); background-size: cover; background-position: center 60%; color: #fff; padding: 24px 0 22px; text-align: center; }
 .nbs-hero-kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--nbs-muted-dark); margin-bottom: 10px; }
 .nbs-hero-kicker .nbs-stars { font-size: 13px; }
-.nbs-hero h1 { font-size: clamp(29px, 7.4vw, 52px); font-weight: 900; max-width: 860px; margin: 0 auto; }
+.nbs-hero h1 { font-size: clamp(29px, 7.4vw, 52px); font-size: clamp(29px, 7.4cqi, 52px); font-weight: 900; max-width: 860px; margin: 0 auto; }
 .nbs-hero h1 .nbs-underline { white-space: nowrap; color: var(--nbs-orange); text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 6px; }
 .nbs-hero-services { margin-top: 12px; font-family: var(--nbs-head); font-weight: 700; font-size: 13px; color: var(--nbs-orange); letter-spacing: .04em; text-transform: uppercase; }
 .nbs-hero-lead { margin-top: 8px; font-size: 15px; color: var(--nbs-muted-dark); }
 .nbs-hero-lead b { color: #fff; }
-.nbs-hero-media { position: relative; max-width: 760px; margin: 16px auto 0; border-radius: 16px; overflow: hidden; border: 3px solid var(--nbs-orange); }
-.nbs-hero-media img { width: 100%; height: auto !important; aspect-ratio: 16 / 9; object-fit: cover; object-position: center; }
-.nbs-hero-media-tag {
-  position: absolute; top: 12px; right: 12px; background: var(--nbs-orange); color: var(--nbs-black);
-  font-family: var(--nbs-head); font-weight: 900; font-size: 15px; line-height: 1.1; padding: 9px 11px; border-radius: 10px; transform: rotate(3deg);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
-}
-.nbs-hero-media-tag small { display: block; font-size: 10px; font-weight: 800; letter-spacing: .06em; }
-.nbs-ticker { overflow: hidden; border-top: 1px solid var(--nbs-line-dark); border-bottom: 1px solid var(--nbs-line-dark); margin-top: 20px; background: #121212; }
+.nbs-ticker { overflow: hidden; border-top: 1px solid var(--nbs-line-dark); border-bottom: 1px solid var(--nbs-line-dark); background: #121212; }
 .nbs-ticker-track { display: flex; width: max-content; animation: nbs-marquee 26s linear infinite; }
 .nbs-ticker-item { display: flex; align-items: center; padding: 12px 20px; font-family: var(--nbs-head); font-weight: 700; font-size: 14px; white-space: nowrap; color: #fff; }
 .nbs-ticker-item::after { content: "•"; color: var(--nbs-orange); margin-left: 20px; }
@@ -113,7 +108,7 @@
 @media (prefers-reduced-motion: reduce) { .nbs-ticker-track { animation: none; } }
 
 /* ---------- 02 Quiz (fake form) ---------- */
-.nbs-quiz { background: var(--nbs-charcoal); color: #fff; padding: 26px 0 44px; scroll-margin-top: 10px; }
+.nbs-quiz { background: var(--nbs-charcoal); color: #fff; padding: 4px 0 36px; scroll-margin-top: 10px; }
 .nbs-quiz-card { max-width: 620px; margin: 0 auto; }
 .nbs-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
 .nbs-progress-bar { flex: 1; height: 8px; background: #2C2C2C; border-radius: 99px; overflow: hidden; }
@@ -122,7 +117,7 @@
 .nbs-step { display: none; animation: nbs-in .3s ease; }
 .nbs-step.is-active { display: block; }
 @keyframes nbs-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-.nbs-q { text-align: center; font-family: var(--nbs-head); font-weight: 800; font-size: clamp(21px, 5vw, 26px); }
+.nbs-q { text-align: center; font-family: var(--nbs-head); font-weight: 800; font-size: clamp(21px, 5vw, 26px); font-size: clamp(21px, 5cqi, 26px); }
 .nbs-q-hint { text-align: center; font-size: 14px; color: var(--nbs-muted-dark); margin: 8px 0 20px; }
 .nbs-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .nbs-tile {
@@ -205,12 +200,12 @@
 .nbs-sticky.is-visible { transform: none; }
 .nbs-sticky .nbs-btn { width: 100%; padding: 15px 20px; font-size: 16px; box-shadow: 0 4px 0 var(--nbs-orange-deep); }
 
-/* ---------- Desktop ---------- */
-@media (min-width: 760px) {
+/* ---------- Wide sections (desktop) ---------- */
+@container (min-width: 760px) {
   .nbs-section { padding: 72px 0; }
   .nbs-header .nbs-wrap { height: 74px; }
   .nbs-header-logo { height: 44px !important; }
-  .nbs-hero { padding-top: 44px; }
+  .nbs-hero { padding: 44px 0 30px; }
   .nbs-tiles-5 { grid-template-columns: repeat(6, 1fr); }
   .nbs-tiles-5 .nbs-tile { grid-column: span 2; }
   .nbs-tiles-5 .nbs-tile:nth-child(4) { grid-column: 2 / span 2; }
@@ -219,13 +214,15 @@
   .nbs-swipe { display: none; }
   .nbs-review-list { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 24px 0 0; padding: 0; }
   .nbs-footer { padding-bottom: 20px; }
+}
+@media (min-width: 760px) {
   .nbs-sticky { display: none; }
 }
-@media (min-width: 1024px) {
+@container (min-width: 1024px) {
   .nbs-gallery { grid-template-columns: repeat(4, 1fr); }
 }
-@media (max-width: 759px) {
+@container (max-width: 759px) {
   .nbs-tiles-5 .nbs-tile:last-child { grid-column: 1 / -1; min-height: 0; flex-direction: row; gap: 12px; padding: 16px; }
   .nbs-tiles-5 .nbs-tile:last-child svg { width: 36px; height: 36px; }
 }
-@media (max-width: 380px) { .nbs-header-rating { display: none; } }
+@container (max-width: 380px) { .nbs-header-rating { display: none; } }
