@@ -167,13 +167,14 @@
   .nbs-rating-meta { font-size: 13px; color: var(--nbs-muted); font-weight: 600; margin-top: 6px; }
   .nbs-checkatrade { font-family: var(--nbs-head); font-weight: 800; font-size: 18px; color: #1B2E48; display: inline-flex; align-items: center; gap: 6px; }
   .nbs-checkatrade i { font-style: normal; width: 22px; height: 22px; border-radius: 50%; background: #E03C31; color: #fff; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; }
-  .nbs-review-list { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 18px; }
-  .nbs-review { background: #fff; border: 1px solid #ECEAE5; border-radius: 14px; padding: 16px; }
+  .nbs-review-list { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 18px -16px 0; padding: 0 16px 8px; scrollbar-width: none; }
+  .nbs-review-list::-webkit-scrollbar { display: none; }
+  .nbs-review { flex: 0 0 86%; scroll-snap-align: center; background: #fff; border: 1px solid #ECEAE5; border-radius: 14px; padding: 16px; }
   .nbs-review-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
   .nbs-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--nbs-orange); color: var(--nbs-black); font-family: var(--nbs-head); font-weight: 800; display: flex; align-items: center; justify-content: center; }
   .nbs-review-name { font-weight: 700; font-size: 15px; }
   .nbs-review-src { font-size: 12px; color: var(--nbs-muted); }
-  .nbs-review p { font-size: 15px; color: #333; }
+  .nbs-review p { font-size: 15px; color: #333; line-height: 1.55; }
   .nbs-footer { background: var(--nbs-black); color: #8E8E8E; text-align: center; padding: 20px 16px 96px; font-size: 12px; }
   .nbs-footer a { color: #C9C9C9; }
   .nbs-sticky {
@@ -196,7 +197,7 @@
     .nbs-gallery { overflow: visible; margin: 32px 0 0; padding: 0; }
     .nbs-shot { flex: 1; }
     .nbs-swipe { display: none; }
-    .nbs-review-list { grid-template-columns: repeat(3, 1fr); }
+    .nbs-review-list { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 24px 0 0; padding: 0; }
     .nbs-footer { padding-bottom: 20px; }
     .nbs-sticky { display: none; }
   }

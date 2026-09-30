@@ -10,11 +10,11 @@ It uses a styled multi-step quiz (the "fake form") that fills in and submits a *
 | `sections/00-global-head.html` | The font and all CSS. Paste into **Page Settings → Tracking Code → Header**. |
 | `sections/01-hero.html` | Section 1: header, offer bar, headline, hero photo, proof ticker |
 | `sections/02-quiz.html` | Section 2: the quiz (fake form) and the GHL bridge script. Edit `NBS_CONFIG` at the top of its `<script>`. |
-| `sections/03-recent-installs.html` | Section 3: swipeable job photos and a call-to-action button |
-| `sections/04-reviews.html` | Section 4: Google/Checkatrade ratings, reviews, call-to-action button, footer line, sticky mobile CTA |
+| `sections/03-recent-installs.html` | Section 3: 4 swipeable job photos and a call-to-action button |
+| `sections/04-reviews.html` | Section 4: Google/Checkatrade ratings, 6 real Google reviews (swipe row), call-to-action button, footer line, sticky mobile CTA |
 | `landing-page.html` | All 4 sections joined into one page |
 | `preview.html` | Same page plus a mock GHL form, to test the quiz autofill locally |
-| `assets/` | Page images, sized for speed (~300KB total; ~100KB above the fold). `assets/brand/` holds full-size logos. |
+| `assets/` | Page images, sized for speed (~100KB above the fold; gallery lazy-loads). `assets/brand/` holds full-size logos. |
 | `build.sh` | Rebuilds `landing-page.html` and `preview.html` after you edit a section |
 
 Each section file goes into its own GHL **Custom Code** element, in order.
@@ -74,11 +74,11 @@ Facebook Lead event: fire it on the thank-you page (recommended), or set `fireFa
 
 ## Still to do before launch
 
-- [ ] Replace the placeholder `assets/job-bungalow.webp` with the real bungalow resin photo (same filename)
-- [ ] Paste 3 real Google reviews into `04-reviews.html`
 - [ ] Add the Privacy Policy links (`02-quiz.html`, `04-reviews.html`)
 - [ ] Upload the `assets/` images to GHL Media and swap each `src`
 - [ ] Map the GHL field names in `NBS_CONFIG`
+
+Original photos and review screenshots are kept in `source-photos/` (not used by the page).
 
 ## Local preview
 
