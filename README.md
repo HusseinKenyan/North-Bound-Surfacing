@@ -7,17 +7,13 @@ It uses a styled multi-step quiz (the "fake form") that fills in and submits a *
 
 | Path | What it is |
 |---|---|
-| `sections/00-global-head.html` | The font and all CSS. Paste into **Page Settings → Tracking Code → Header**. |
-| `sections/01-hero.html` | Section 1: header, offer bar, headline, hero photo, proof ticker |
-| `sections/02-quiz.html` | Section 2: the quiz (fake form) and the GHL bridge script. Edit `NBS_CONFIG` at the top of its `<script>`. |
-| `sections/03-recent-installs.html` | Section 3: 6 before & after pairs (swipe row on mobile, 3 x 2 grid on desktop) and a call-to-action button |
-| `sections/04-reviews.html` | Section 4: Google/Checkatrade ratings, 6 real Google reviews (swipe row), call-to-action button, footer line, sticky mobile CTA |
-| `landing-page.html` | All 4 sections joined into one page |
+| **`ghl/`** | **Paste-ready files for GHL.** Every image is embedded in the code, so there is nothing to upload or swap. |
+| `sections/` | Editable source of the same files (images referenced as `assets/…`). Edit these, then run `./build.sh`. |
+| `assets/` | The page images (~300KB total), embedded into `ghl/` by the build. `assets/brand/` holds full-size logos. |
+| `landing-page.html` | The whole page as one self-contained file (images embedded) |
 | `preview.html` | Same page plus a mock GHL form, to test the quiz autofill locally |
-| `assets/` | Page images, sized for speed (~100KB above the fold; gallery lazy-loads). `assets/brand/` holds full-size logos. |
-| `build.sh` | Rebuilds `landing-page.html` and `preview.html` after you edit a section |
-
-Each section file goes into its own GHL **Custom Code** element, in order.
+| `build.sh` | Rebuilds `ghl/`, `landing-page.html` and `preview.html` from `sections/` |
+| `source-photos/` | Original job photos and review screenshots (not used by the page) |
 
 ## Page sections
 
@@ -31,12 +27,15 @@ Each section file goes into its own GHL **Custom Code** element, in order.
 
 ### Pasting into GHL
 
-1. **Header code:** paste all of `00-global-head.html` into the funnel step's **Settings → Tracking Code → Header**.
-2. **Sections:** add 4 full-width GHL sections, each with one **Custom Code** element, and paste files 01–04 in order.
+Use the files in the **`ghl/`** folder:
+
+1. **Header code:** paste all of `ghl/00-global-head.html` into the funnel step's **Settings → Tracking Code → Header**.
+2. **Sections:** add 4 full-width GHL sections, each with one **Custom Code** element, and paste `ghl/01`–`ghl/04` in order.
    Set each section/row/column to **full width with 0 padding and 0 margin** so the sections sit edge to edge.
 3. **Hidden form:** add the native GHL **Form** element in a 5th section at the very bottom (see *GHL setup*).
-4. **Images:** upload `assets/*.webp` to GHL Media and replace each `src="assets/…"` with its media URL
-   (`01-hero.html`: logo + hero; `03-recent-installs.html`: 6 before/after images).
+
+Images are already embedded, so there's no media uploading. (`ghl/03-recent-installs.html` is ~300KB because it holds the six
+before/after photos; the GHL code editor may be a little slow to open it, which is normal.)
 
 The CSS is scoped to `.nbs` and hardened against GHL's global styles (tested by injecting hostile heading, paragraph,
 button, link and image rules: no visual change).
@@ -44,7 +43,10 @@ button, link and image rules: no visual change).
 ## Speed
 
 - One web font (Montserrat, 3 weights) for headings; body text uses the phone's system font.
-- Hero image ~89KB WebP loaded with high priority; gallery images lazy-load as the visitor scrolls.
+- Images are compressed WebP embedded in the page (hero 65KB, six before/after pairs ~37KB each), so there are no extra image requests.
+  The before/after section comes after the quiz, so it streams in after the first screen has rendered.
+- Tested on a throttled slow-4G connection (1.6 Mbps, no compression): hero, headline and quiz visible at ~1.0s; full page loaded at ~2.4s.
+  GHL serves pages compressed, so live numbers should be better.
 - No libraries or frameworks. The only JavaScript is the quiz and the smooth scroll/sticky button.
 
 ## GHL setup
@@ -96,7 +98,6 @@ Facebook Lead event: fire it on the thank-you page (recommended), or set `fireFa
 
 ## Still to do before launch
 
-- [ ] Upload the `assets/` images to GHL Media and swap each `src`
 - [ ] Map the GHL field names in `NBS_CONFIG`
 
 Original photos (`source-photos/jobs/`) and review screenshots (`source-photos/reviews/`) are kept for reference; the page does not load them.

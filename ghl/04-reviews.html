@@ -1,0 +1,85 @@
+<!--
+  ============================================================
+  04 · REVIEWS + FOOTER + sticky mobile CTA
+  Real Google reviews in a swipe row (mobile) / 3-column grid (desktop).
+  Set the Privacy Policy link.
+  ============================================================
+-->
+<div class="nbs">
+  <section class="nbs-section nbs-reviews">
+    <div class="nbs-wrap">
+      <h2 class="nbs-title">What Our <span class="nbs-hl">Customers</span> Say</h2>
+      <div class="nbs-rating-row">
+        <div class="nbs-rating-card">
+          <div class="nbs-google"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></div>
+          <div class="nbs-rating-score">5.0<small>/5</small></div>
+          <div class="nbs-stars">★★★★★</div>
+          <div class="nbs-rating-meta">218 reviews</div>
+        </div>
+        <div class="nbs-rating-card">
+          <div class="nbs-checkatrade"><i>✓</i>Checkatrade</div>
+          <div class="nbs-rating-score">10<small>/10</small></div>
+          <div class="nbs-stars">★★★★★</div>
+          <div class="nbs-rating-meta">Checkatrade rating</div>
+        </div>
+      </div>
+      <!-- Real Google reviews, quoted word for word ("…" marks trimmed text). Screenshots in source-photos/reviews. -->
+      <div class="nbs-review-list">
+        <div class="nbs-review">
+          <div class="nbs-review-head"><div class="nbs-avatar">A</div><div><div class="nbs-review-name">Angela H.</div><div class="nbs-review-src"><span class="nbs-stars">★★★★★</span> · Grey resin driveway &amp; fencing</div></div></div>
+          <p>“I honestly couldn't recommend North Bound Surfacing enough! They did a grey resin driveway and fencing at my house, and I'm absolutely over the moon with how it's turned out. … They kept me updated every step of the way, letting me know what they were doing and when, which made the whole process so easy and stress-free.”</p>
+        </div>
+        <div class="nbs-review">
+          <div class="nbs-review-head"><div class="nbs-avatar">S</div><div><div class="nbs-review-name">Steve B.</div><div class="nbs-review-src"><span class="nbs-stars">★★★★★</span> · Tarmac driveway</div></div></div>
+          <p>“The timescales were exactly as promised, communication was great, and the attention to detail was second to none. … Every stage was carried out properly, with no shortcuts, and the finished driveway has completely transformed the front of the property. … 10/10!”</p>
+        </div>
+        <div class="nbs-review">
+          <div class="nbs-review-head"><div class="nbs-avatar">C</div><div><div class="nbs-review-name">Carole A.</div><div class="nbs-review-src"><span class="nbs-stars">★★★★★</span> · Driveway installation</div></div></div>
+          <p>“Right from their first visit to discuss my driveway plans Northbound were very professional explaining exactly what surfaces would work with my project &amp; most importantly what wouldn't work. … They worked hard, left everything clear &amp; tidy &amp; kept my neighbours happy throughout.”</p>
+        </div>
+        <div class="nbs-review">
+          <div class="nbs-review-head"><div class="nbs-avatar">J</div><div><div class="nbs-review-name">Jonathan L.</div><div class="nbs-review-src"><span class="nbs-stars">★★★★★</span> · Driveway patch-in</div></div></div>
+          <p>“Great work ethic and even better finish. The communication from the office is second to none which is a refreshing change … The job is seamless! Will 1000% recommend using Northbound for your project.”</p>
+        </div>
+        <div class="nbs-review">
+          <div class="nbs-review-head"><div class="nbs-avatar">M</div><div><div class="nbs-review-name">Momo</div><div class="nbs-review-src"><span class="nbs-stars">★★★★★</span> · Driveway &amp; garden</div></div></div>
+          <p>“We had our garden resurfaced and a new driveway completed by North Bound Surface, and we couldn't be happier with the result. … The work was completed to a very high standard and the whole process was smooth and stress-free.”</p>
+        </div>
+        <div class="nbs-review">
+          <div class="nbs-review-head"><div class="nbs-avatar">A</div><div><div class="nbs-review-name">Anne S.</div><div class="nbs-review-src"><span class="nbs-stars">★★★★★</span> · Resin path &amp; backyard</div></div></div>
+          <p>“Fantastic job by the lads at Northbound. Very professional and all the lads were very friendly. I had the front path and backyard done in resin. What a difference it makes. My neighbours are very impressed.”</p>
+        </div>
+      </div>
+      <p class="nbs-swipe">← Swipe for more reviews →</p>
+      <div class="nbs-cta-row">
+        <a class="nbs-btn" href="#nbs-quiz">Claim My 10% Off Quote →</a>
+        <p class="nbs-cta-note">Free · No obligation · Takes 30 seconds</p>
+      </div>
+    </div>
+  </section>
+  <footer class="nbs-footer">
+    © <span id="nbs-year">2026</span> North Bound Surfacing · Greater Manchester &amp; Cheshire · <a href="https://northboundsurfacing.co.uk/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>
+  </footer>
+  <div class="nbs-sticky" id="nbs-sticky">
+    <a class="nbs-btn" href="#nbs-quiz">Get My Free Quote + 10% Off →</a>
+  </div>
+</div>
+<script>
+(function () {
+  var y = document.getElementById('nbs-year');
+  if (y) y.textContent = new Date().getFullYear();
+  var quiz = document.getElementById('nbs-quiz');
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#nbs-quiz"]');
+    if (!a || !quiz) return;
+    e.preventDefault();
+    window.scrollTo({ top: quiz.getBoundingClientRect().top + window.pageYOffset - 10, behavior: 'smooth' });
+  });
+  var sticky = document.getElementById('nbs-sticky');
+  if (!sticky || !quiz || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (entries) {
+    var e = entries[0];
+    sticky.classList.toggle('is-visible', !e.isIntersecting && e.boundingClientRect.top < 0);
+  }).observe(quiz);
+})();
+</script>
