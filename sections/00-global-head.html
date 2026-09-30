@@ -151,9 +151,12 @@
   .nbs-installs { background: #fff; }
   .nbs-gallery { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 24px -16px 0; padding: 0 16px 8px; scrollbar-width: none; }
   .nbs-gallery::-webkit-scrollbar { display: none; }
-  .nbs-shot { position: relative; flex: 0 0 78%; scroll-snap-align: center; border-radius: 14px; overflow: hidden; background: #ddd; }
-  .nbs-shot img { width: 100%; height: auto !important; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 70%; }
-  .nbs-shot span { position: absolute; left: 10px; bottom: 10px; background: var(--nbs-orange); color: var(--nbs-black); font-family: var(--nbs-head); font-weight: 800; font-size: 12px; letter-spacing: .03em; text-transform: uppercase; padding: 6px 10px; border-radius: 6px; }
+  .nbs-ba { flex: 0 0 90%; scroll-snap-align: center; margin: 0; }
+  .nbs-ba-img { position: relative; border-radius: 14px; overflow: hidden; background: #ddd; }
+  .nbs-ba-img img { width: 100%; height: auto !important; aspect-ratio: 684 / 440; }
+  .nbs-ba-tag { position: absolute; top: 10px; left: 10px; background: rgba(15, 15, 15, .82); color: #fff; font-family: var(--nbs-head); font-weight: 800; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; padding: 5px 9px; border-radius: 6px; }
+  .nbs-ba-tag.nbs-ba-after { left: calc(50% + 10px); background: var(--nbs-orange); color: var(--nbs-black); }
+  .nbs-ba figcaption { font-family: var(--nbs-head); font-weight: 700; font-size: 15px; text-align: center; margin-top: 10px; }
   .nbs-swipe { text-align: center; font-size: 13px; color: var(--nbs-muted); margin-top: 8px; }
 
   /* ---------- 04 Reviews + footer ---------- */
@@ -194,8 +197,7 @@
     .nbs-tiles-5 .nbs-tile { grid-column: span 2; }
     .nbs-tiles-5 .nbs-tile:nth-child(4) { grid-column: 2 / span 2; }
     .nbs-tiles-5 .nbs-tile:nth-child(5) { grid-column: 4 / span 2; }
-    .nbs-gallery { overflow: visible; margin: 32px 0 0; padding: 0; }
-    .nbs-shot { flex: 1; }
+    .nbs-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 20px; overflow: visible; margin: 32px 0 0; padding: 0; }
     .nbs-swipe { display: none; }
     .nbs-review-list { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 24px 0 0; padding: 0; }
     .nbs-footer { padding-bottom: 20px; }
