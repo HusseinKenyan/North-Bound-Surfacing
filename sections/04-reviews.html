@@ -1,0 +1,71 @@
+<!--
+  ============================================================
+  04 · REVIEWS + FOOTER + sticky mobile CTA
+  REPLACE the three placeholder reviews with real Google reviews.
+  Set the Google reviews link and the Privacy Policy link.
+  ============================================================
+-->
+<div class="nbs">
+  <section class="nbs-section nbs-reviews">
+    <div class="nbs-wrap">
+      <h2 class="nbs-title">What Our <span class="nbs-hl">Customers</span> Say</h2>
+      <div class="nbs-rating-row">
+        <div class="nbs-rating-card">
+          <div class="nbs-google"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></div>
+          <div class="nbs-rating-score">5.0<small>/5</small></div>
+          <div class="nbs-stars">★★★★★</div>
+          <div class="nbs-rating-meta">218 reviews</div>
+        </div>
+        <div class="nbs-rating-card">
+          <div class="nbs-checkatrade"><i>✓</i>Checkatrade</div>
+          <div class="nbs-rating-score">10<small>/10</small></div>
+          <div class="nbs-stars">★★★★★</div>
+          <div class="nbs-rating-meta">Checkatrade rating</div>
+        </div>
+      </div>
+      <div class="nbs-review-list">
+        <div class="nbs-review">
+          <div class="nbs-review-head"><div class="nbs-avatar">A</div><div><div class="nbs-review-name">[Customer name]</div><div class="nbs-review-src">Google · <span class="nbs-stars">★★★★★</span></div></div></div>
+          <p>[Paste a real Google review here.]</p>
+        </div>
+        <div class="nbs-review">
+          <div class="nbs-review-head"><div class="nbs-avatar">B</div><div><div class="nbs-review-name">[Customer name]</div><div class="nbs-review-src">Google · <span class="nbs-stars">★★★★★</span></div></div></div>
+          <p>[Paste a real Google review here.]</p>
+        </div>
+        <div class="nbs-review">
+          <div class="nbs-review-head"><div class="nbs-avatar">C</div><div><div class="nbs-review-name">[Customer name]</div><div class="nbs-review-src">Google · <span class="nbs-stars">★★★★★</span></div></div></div>
+          <p>[Paste a real Google review here.]</p>
+        </div>
+      </div>
+      <div class="nbs-cta-row">
+        <a class="nbs-btn" href="#nbs-quiz">Claim My 10% Off Quote →</a>
+        <p class="nbs-cta-note">Free · No obligation · Takes 30 seconds</p>
+      </div>
+    </div>
+  </section>
+  <footer class="nbs-footer">
+    © <span id="nbs-year">2026</span> North Bound Surfacing · Greater Manchester &amp; Cheshire · <a href="#" target="_blank" rel="noopener">Privacy Policy</a>
+  </footer>
+  <div class="nbs-sticky" id="nbs-sticky">
+    <a class="nbs-btn" href="#nbs-quiz">Get My Free Quote + 10% Off →</a>
+  </div>
+</div>
+<script>
+(function () {
+  var y = document.getElementById('nbs-year');
+  if (y) y.textContent = new Date().getFullYear();
+  var quiz = document.getElementById('nbs-quiz');
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#nbs-quiz"]');
+    if (!a || !quiz) return;
+    e.preventDefault();
+    window.scrollTo({ top: quiz.getBoundingClientRect().top + window.pageYOffset - 10, behavior: 'smooth' });
+  });
+  var sticky = document.getElementById('nbs-sticky');
+  if (!sticky || !quiz || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (entries) {
+    var e = entries[0];
+    sticky.classList.toggle('is-visible', !e.isIntersecting && e.boundingClientRect.top < 0);
+  }).observe(quiz);
+})();
+</script>

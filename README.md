@@ -7,28 +7,23 @@ It uses a styled multi-step quiz (the "fake form") that fills in and submits a *
 
 | Path | What it is |
 |---|---|
-| `sections/00-global-head.html` | Fonts and all CSS. Paste into **Page Settings → Tracking Code → Header**. |
-| `sections/01-header.html` … `11-footer.html` | One file per section. Each goes into its own **Custom Code** element, in order. |
-| `sections/03-quiz.html` | The quiz and the GHL bridge script. Edit `NBS_CONFIG` at the top of its `<script>`. |
-| `landing-page.html` | Every section joined into one full page, for quick viewing or single-element use. |
-| `preview.html` | Same page plus a mock GHL form, so the autofill can be tested locally. |
-| `assets/` | Logos (transparent PNGs) and job photos. Upload them to GHL Media and swap each `src`. |
-| `build.sh` | Rebuilds `landing-page.html` and `preview.html` after you edit a section. |
+| `sections/00-global-head.html` | The font and all CSS. Paste into **Page Settings → Tracking Code → Header**. |
+| `sections/01-hero.html` | Section 1: header, offer bar, headline, hero photo, proof ticker |
+| `sections/02-quiz.html` | Section 2: the quiz (fake form) and the GHL bridge script. Edit `NBS_CONFIG` at the top of its `<script>`. |
+| `sections/03-recent-installs.html` | Section 3: swipeable job photos and a call-to-action button |
+| `sections/04-reviews.html` | Section 4: Google/Checkatrade ratings, reviews, call-to-action button, footer line, sticky mobile CTA |
+| `landing-page.html` | All 4 sections joined into one page |
+| `preview.html` | Same page plus a mock GHL form, to test the quiz autofill locally |
+| `assets/` | Page images, sized for speed (~300KB total; ~100KB above the fold). `assets/brand/` holds full-size logos. |
+| `build.sh` | Rebuilds `landing-page.html` and `preview.html` after you edit a section |
 
-## Section order
+Each section file goes into its own GHL **Custom Code** element, in order.
 
-1. Header (logo, Google rating) and the 10% OFF offer bar
-2. Hero: headline, job photo, scrolling proof ticker
-3. **Quiz**: services (multi-select) → area size → timeframe → postcode → name/phone/email
-4. Proof strip: 218 reviews · 5.0 Google · 10/10 Checkatrade
-5. Recent installs (3 jobs) and a call-to-action button
-6. Why choose us
-7. Meet the team (office photos)
-8. Reviews
-9. How it works (3 steps)
-10. FAQ
-11. Final call to action
-12. Footer and sticky mobile call-to-action bar
+## Speed
+
+- One web font (Montserrat, 3 weights) for headings; body text uses the phone's system font.
+- Hero image ~89KB WebP loaded with high priority; gallery images lazy-load as the visitor scrolls.
+- No libraries or frameworks. The only JavaScript is the quiz and the smooth scroll/sticky button.
 
 ## GHL setup
 
@@ -79,10 +74,9 @@ Facebook Lead event: fire it on the thank-you page (recommended), or set `fireFa
 
 ## Still to do before launch
 
-- [ ] Replace the 3 placeholder photos with the real files, keeping the same names:
-      `assets/job-resin-bungalow.webp`, `assets/office-sign.webp`, `assets/office-team.webp`
-- [ ] Paste 3 real Google reviews into `07-reviews.html`
-- [ ] Add the Google reviews link (`07-reviews.html`) and Privacy Policy links (`03-quiz.html`, `11-footer.html`)
+- [ ] Replace the placeholder `assets/job-bungalow.webp` with the real bungalow resin photo (same filename)
+- [ ] Paste 3 real Google reviews into `04-reviews.html`
+- [ ] Add the Privacy Policy links (`02-quiz.html`, `04-reviews.html`)
 - [ ] Upload the `assets/` images to GHL Media and swap each `src`
 - [ ] Map the GHL field names in `NBS_CONFIG`
 
