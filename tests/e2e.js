@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * End-to-end checks against the built page (run "node build.js" first).
+ * Browser checks against the built page (run "node build.js" first; "npm test" does both).
  *
  *   1. Every image renders.
  *   2. The quiz validates bad input.
@@ -15,7 +15,7 @@ const assert = require('assert/strict');
 const path = require('path');
 const { chromium } = require('playwright');
 
-const url = (file) => 'file://' + path.join(__dirname, '..', 'dist', file);
+const url = (file) => 'file://' + path.join(__dirname, '..', file);
 const MOBILE = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 };
 
 async function run(name, fn) {
@@ -29,7 +29,7 @@ async function run(name, fn) {
 
   await run('every image renders', async () => {
     const page = await newPage();
-    await page.goto(url('landing-page.html'));
+    await page.goto(url('preview.html'));
     for (const img of await page.$$('img')) {
       await img.scrollIntoViewIfNeeded();
       await page.waitForFunction((el) => el.complete && el.naturalWidth > 0, img);
@@ -38,7 +38,7 @@ async function run(name, fn) {
 
   await run('quiz rejects a bad postcode, phone and email', async () => {
     const page = await newPage();
-    await page.goto(url('preview.html'));
+    await page.goto(url('tests/preview-test.html'));
     await page.click('[data-value="Resin"]');
     await page.click('.nbs-step[data-step="1"] [data-next]');
     await page.click('[data-value="Not sure"]');
@@ -58,7 +58,7 @@ async function run(name, fn) {
 
   await run('quiz fills and submits the hidden GHL form', async () => {
     const page = await newPage();
-    await page.goto(url('preview.html'));
+    await page.goto(url('tests/preview-test.html'));
     assert.ok(await page.$eval('#mock-ghl-form', (f) => f.getBoundingClientRect().left < -1000), 'GHL form not hidden');
     await page.click('[data-value="Resin"]');
     await page.click('[data-value="Paved Edging"]');
@@ -89,7 +89,7 @@ async function run(name, fn) {
 
   await run('styles survive hostile GHL-style global CSS', async () => {
     const page = await newPage();
-    await page.goto(url('landing-page.html'));
+    await page.goto(url('preview.html'));
     const style = (sel) => page.$eval(sel, (el) => {
       const s = getComputedStyle(el);
       return [s.color, s.fontFamily, s.textTransform, s.marginTop, s.backgroundColor, s.borderTopWidth].join('|');
