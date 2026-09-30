@@ -1,110 +1,94 @@
 # North Bound Surfacing: Facebook Ads Landing Page
 
-A mobile-first quiz funnel for resin, tarmac, block paving/porcelain, paved edging and artificial turf.
-It uses a styled multi-step quiz (the "fake form") that fills in and submits a **hidden native GHL form**.
+A fast, mobile-first quiz funnel for GoHighLevel (GHL). Visitors answer a styled 5-step quiz (the "fake form");
+on submit, a script fills in and submits a **hidden native GHL form** on the same page, so GHL workflows,
+pipelines and redirects run as normal.
 
-## Files
+## Project layout
 
-| Path | What it is |
-|---|---|
-| **`ghl/`** | **Paste-ready files for GHL.** Every image is embedded in the code, so there is nothing to upload or swap. |
-| `sections/` | Editable source of the same files (images referenced as `assets/…`). Edit these, then run `./build.sh`. |
-| `assets/` | The page images (~300KB total), embedded into `ghl/` by the build. `assets/brand/` holds full-size logos. |
-| `landing-page.html` | The whole page as one self-contained file (images embedded) |
-| `preview.html` | Same page plus a mock GHL form, to test the quiz autofill locally |
-| `build.sh` | Rebuilds `ghl/`, `landing-page.html` and `preview.html` from `sections/` |
-| `source-photos/` | Original job photos and review screenshots (not used by the page) |
+```
+src/                        ← EDIT HERE (the source of truth)
+├── head.html               font links + stylesheet link
+├── styles/main.css         ALL the CSS (brand colours in :root at the top)
+├── scripts/quiz.js         quiz logic + GHL bridge (NBS_CONFIG field mapping at the top)
+├── scripts/page.js         smooth scroll, sticky mobile CTA, footer year
+├── sections/               one HTML file per page section (markup only)
+│   ├── 01-hero.html
+│   ├── 02-quiz.html
+│   ├── 03-before-after.html
+│   └── 04-reviews.html
+└── images/                 compressed WebP images used by the page
+
+dist/                       ← GENERATED: never edit, copy from here
+├── ghl/                    paste-ready GHL files (CSS, JS and images inlined)
+│   ├── 00-head.html        → Settings → Tracking Code → Header
+│   ├── 01-hero.html        → Section 1 Custom Code element
+│   ├── 02-quiz.html        → Section 2 Custom Code element
+│   ├── 03-before-after.html→ Section 3 Custom Code element
+│   └── 04-reviews.html     → Section 4 Custom Code element
+├── landing-page.html       whole page as one self-contained file
+└── preview.html            same + a mock GHL form, for testing locally
+
+build.js                    builds src/ → dist/ (no dependencies)
+tests/e2e.js                browser tests (images, validation, GHL autofill, style isolation)
+tests/fixtures/             mock GHL form used by preview.html and the tests
+brand/                      full-size logo files
+source-photos/              original job photos + review screenshots (not used by the page)
+```
+
+**Rule of thumb:** change things in `src/`, run the build, paste from `dist/ghl/`.
+`dist/` is committed on purpose so the paste-ready files are always available on GitHub.
+
+## Commands
+
+```bash
+node build.js     # or: npm run build   (rebuilds dist/)
+npm install       # once, installs Playwright for the tests
+npm test          # builds, then runs the browser tests
+```
 
 ## Page sections
 
-| # | File | What's in it | Background |
+| # | Section | Contents | Background |
 |---|---|---|---|
-| — | `00-global-head.html` | Montserrat font + all CSS (brand colours in `:root`) | — |
-| 1 | `01-hero.html` | Logo + Google rating bar · orange "10% OFF – Limited Time Only" bar · stars kicker · headline with **10% OFF** · services line · "Free quote in 30 seconds" · hero photo with LIMITED TIME tag · scrolling proof ticker | Dark |
-| 2 | `02-quiz.html` | 5-step quiz: services (multi-select) → area size → timeframe → postcode → name/phone/email · progress bar · GHL bridge script | Dark |
-| 3 | `03-recent-installs.html` | "Real Before & After Results": 6 before/after pairs (swipe on mobile, 3 × 2 on desktop) · "Yes! I Want A Free Quote" button | White |
-| 4 | `04-reviews.html` | Google 5.0 / Checkatrade 10/10 cards · 6 real Google reviews (swipe on mobile, 3 × 2 on desktop) · "Claim My 10% Off Quote" button · footer line with Privacy Policy · sticky mobile CTA | Light grey |
+| 1 | Hero | Logo + Google rating · "10% OFF – Limited Time Only" bar · headline with **10% OFF** · services line · hero photo with LIMITED TIME tag · scrolling proof ticker | Dark |
+| 2 | Quiz | Services (multi-select) → area size → timeframe → postcode → name/phone/email · progress bar | Dark |
+| 3 | Before & after | 6 before/after pairs (swipe on mobile, 3 × 2 on desktop) · CTA button | White |
+| 4 | Reviews | Google 5.0 + Checkatrade 10/10 cards · 6 real Google reviews · CTA button · footer · sticky mobile CTA | Light grey |
 
-### Pasting into GHL
+## Putting it into GHL
 
-Use the files in the **`ghl/`** folder:
+1. Paste `dist/ghl/00-head.html` into the funnel step's **Settings → Tracking Code → Header**.
+2. Add 4 full-width sections, each with one **Custom Code** element, and paste `dist/ghl/01`–`04` in order.
+   Set every section, row and column to **0 padding and 0 margin** so the sections sit edge to edge.
+3. Add the native GHL **Form** element in a 5th section at the very bottom (see below). The script hides it.
 
-1. **Header code:** paste all of `ghl/00-global-head.html` into the funnel step's **Settings → Tracking Code → Header**.
-2. **Sections:** add 4 full-width GHL sections, each with one **Custom Code** element, and paste `ghl/01`–`ghl/04` in order.
-   Set each section/row/column to **full width with 0 padding and 0 margin** so the sections sit edge to edge.
-3. **Hidden form:** add the native GHL **Form** element in a 5th section at the very bottom (see *GHL setup*).
+Images are embedded in the files, so there's nothing to upload. `03-before-after.html` is ~300KB (six photos),
+so GHL's code editor may be slow to open it. That's expected.
 
-Images are already embedded, so there's no media uploading. (`ghl/03-recent-installs.html` is ~300KB because it holds the six
-before/after photos; the GHL code editor may be a little slow to open it, which is normal.)
+## Hidden GHL form
 
-The CSS is scoped to `.nbs` and hardened against GHL's global styles (tested by injecting hostile heading, paragraph,
-button, link and image rules: no visual change).
-
-## Speed
-
-- One web font (Montserrat, 3 weights) for headings; body text uses the phone's system font.
-- Images are compressed WebP embedded in the page (hero 65KB, six before/after pairs ~37KB each), so there are no extra image requests.
-  The before/after section comes after the quiz, so it streams in after the first screen has rendered.
-- Tested on a throttled slow-4G connection (1.6 Mbps, no compression): hero, headline and quiz visible at ~1.0s; full page loaded at ~2.4s.
-  GHL serves pages compressed, so live numbers should be better.
-- No libraries or frameworks. The only JavaScript is the quiz and the smooth scroll/sticky button.
-
-## GHL setup
-
-1. **Build the native form in GHL** with the fields you want to capture, e.g. Full Name, Phone, Email, Postal Code,
-   plus optional custom fields for Surface Type, Driveway Size, Timeframe and a multi-line "Quiz Answers" field.
-   Turn **off** captcha on this form. Set its on-submit action (redirect to a thank-you page is recommended).
-2. **Add the form to the page** using the native **Form** element, not an iframe embed code. Put it in its own
-   section at the bottom of the page. The script moves it off-screen automatically, so you don't need to hide it
-   with GHL's visibility toggles.
-3. **Paste the sections** into Custom Code elements in the order above. Set each GHL section/row to
-   full width with zero padding so the sections sit edge to edge.
-4. **Map the fields.** Open the page with `?nbsdebug=1` on the end of the URL. The hidden form becomes visible
-   and the browser console prints a table of every field `name`. Put those names in `NBS_CONFIG.fields`
-   in `03-quiz.html`:
-
-   ```js
-   fields: {
-     full_name:  ['full_name'],
-     first_name: ['first_name'],
-     last_name:  ['last_name'],
-     phone:      ['phone'],
-     email:      ['email'],
-     postcode:   ['postal_code'],
-     services:   ['surface_type'],      // checkbox, multi-select dropdown or text field
-     size:       ['driveway_size'],
-     timeframe:  ['project_timeframe'],
-     summary:    ['quiz_answers']       // every answer as one block of text
-   }
-   ```
-
-   Fields that aren't on your form are skipped. For checkbox, radio or dropdown custom fields, make the GHL option
-   labels match the quiz values (`Resin`, `Tarmac`, `Block Paving / Porcelain`, `Paved Edging`, `Artificial Turf`,
+1. Build the native form in GHL (Full Name, Phone, Email, Postal Code, plus any custom fields).
+   Turn **off** captcha. Set the on-submit action (a thank-you page redirect is recommended).
+2. Use the native **Form** element, not an iframe embed code.
+3. Open the live page with `?nbsdebug=1` on the URL. The form becomes visible and the browser console lists
+   every field `name`. Put those names in `NBS_CONFIG.fields` at the top of `src/scripts/quiz.js`, then rebuild.
+4. For checkbox, radio or dropdown fields, make the GHL option labels match the quiz values (matching ignores
+   case and punctuation): `Resin`, `Tarmac`, `Block Paving / Porcelain`, `Paved Edging`, `Artificial Turf`,
    `Small (1-2 cars)`, `Medium (3-4 cars)`, `Large (5+ cars)`, `Not sure`, `As soon as possible`,
-   `Within 1-3 months`, `3-6 months`, `Just getting prices`). Matching ignores case and punctuation.
-5. **Test** a submission with `?nbsdebug=1` and check the contact appears in GHL with every field filled.
+   `Within 1-3 months`, `3-6 months`, `Just getting prices`.
 
-### What the bridge does on submit
+On submit the bridge validates UK postcode/phone/email, converts the phone to `+44…`, splits the full name,
+fills the mapped GHL fields, ticks GHL's consent box (the quiz shows the consent wording) and clicks GHL's own
+submit button. Fire the Facebook Lead event on the thank-you page (or set `fireFacebookLead: true`).
 
-- Validates UK postcode, phone and email in the quiz.
-- Converts the phone number to `+44…` format (set `phoneFormat: 'raw'` to turn this off).
-- Splits the full name into first and last name.
-- Writes each answer into the mapped GHL fields, firing the input/change events GHL's form listens for.
-- Ticks GHL's consent/terms checkbox (the quiz shows the consent wording above its submit button).
-- Clicks GHL's own submit button, so workflows, pipelines, tags and the redirect all run as normal.
-- If GHL hasn't redirected within 7 seconds, it shows its own thank-you message, or goes to `redirectUrl` if you set one.
+## Performance
 
-Facebook Lead event: fire it on the thank-you page (recommended), or set `fireFacebookLead: true`.
+- One web font (Montserrat 700/800/900) for headings; the phone's system font for body text.
+- Compressed WebP images embedded in the page (hero 65KB, before/after pairs ~37KB each, ~300KB total).
+- On a throttled slow-4G connection (1.6 Mbps, uncompressed): hero and quiz visible at ~1.0s, full page at ~2.4s.
+- No frameworks or libraries.
 
-## Still to do before launch
+## Still to do
 
-- [ ] Map the GHL field names in `NBS_CONFIG`
-
-Original photos (`source-photos/jobs/`) and review screenshots (`source-photos/reviews/`) are kept for reference; the page does not load them.
-
-## Local preview
-
-```bash
-./build.sh
-open preview.html   # fill in the quiz; the mock GHL form prints what it received
-```
+- [ ] Map the GHL field names in `NBS_CONFIG` (`src/scripts/quiz.js`)
