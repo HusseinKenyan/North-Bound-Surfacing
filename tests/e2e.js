@@ -111,15 +111,27 @@ async function run(name, fn) {
     await page.goto(url('preview.html'));
     const layout = () => page.evaluate(() => ({
       gallery: getComputedStyle(document.querySelector('.nbs-gallery')).display,
+      wrap: getComputedStyle(document.querySelector('.nbs-gallery')).flexWrap,
       reviews: getComputedStyle(document.querySelector('.nbs-review-list')).display,
       h1: parseFloat(getComputedStyle(document.querySelector('.nbs-hero h1')).fontSize),
       card: document.querySelector('.nbs-ba').getBoundingClientRect().width,
     }));
     const wide = await layout();
-    assert.equal(wide.gallery, 'grid', 'desktop should show the results grid');
+    const rows = await page.evaluate(() => {
+      const g = document.querySelector('.nbs-gallery').getBoundingClientRect();
+      const cards = [...document.querySelectorAll('.nbs-ba')].map((c) => c.getBoundingClientRect());
+      const lastTop = cards[cards.length - 1].top;
+      const last = cards.filter((c) => Math.abs(c.top - lastTop) < 2);
+      const mid = (Math.min(...last.map((c) => c.left)) + Math.max(...last.map((c) => c.right))) / 2;
+      return { perRow: cards.filter((c) => Math.abs(c.top - cards[0].top) < 2).length, offCentre: Math.abs(mid - (g.left + g.right) / 2) };
+    });
+    assert.equal(rows.perRow, 3, 'desktop results should show 3 per row');
+    assert.ok(rows.offCentre < 2, `last row of results is not centred (${rows.offCentre}px off)`);
+    assert.equal(wide.gallery, 'flex', 'desktop results should be a flex row');
     await page.addStyleTag({ content: 'body { width: 390px; margin: 0 auto; overflow-x: hidden; }' });
     const narrow = await layout();
-    assert.equal(narrow.gallery, 'flex', 'narrow section should use the swipe row');
+    assert.equal(wide.wrap, 'wrap', 'desktop results should wrap into rows');
+    assert.equal(narrow.wrap, 'nowrap', 'narrow section should use the swipe row');
     assert.equal(narrow.reviews, 'flex', 'narrow section should use the review swipe row');
     assert.ok(narrow.h1 <= 32, `headline too big in a narrow section: ${narrow.h1}px`);
     assert.ok(narrow.card >= 300, `result photos too small in a narrow section: ${narrow.card}px wide`);

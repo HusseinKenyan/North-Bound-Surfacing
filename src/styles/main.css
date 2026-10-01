@@ -210,16 +210,15 @@
   .nbs-tiles-5 .nbs-tile { grid-column: span 2; }
   .nbs-tiles-5 .nbs-tile:nth-child(4) { grid-column: 2 / span 2; }
   .nbs-tiles-5 .nbs-tile:nth-child(5) { grid-column: 4 / span 2; }
-  .nbs-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px 20px; overflow: visible; margin: 32px 0 0; padding: 0; }
+  /* 3 per row; a short last row is centred */
+  .nbs-gallery { flex-wrap: wrap; justify-content: center; gap: 26px 20px; overflow: visible; margin: 32px 0 0; padding: 0; }
+  .nbs-ba { flex: 0 0 calc((100% - 40px) / 3); }
   .nbs-swipe { display: none; }
   .nbs-review-list { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 24px 0 0; padding: 0; }
   .nbs-footer { padding-bottom: 20px; }
 }
 @media (min-width: 760px) {
   .nbs-sticky { display: none; }
-}
-@container (min-width: 1024px) {
-  .nbs-gallery { grid-template-columns: repeat(4, 1fr); }
 }
 @container (max-width: 759px) {
   .nbs-tiles-5 .nbs-tile:last-child { grid-column: 1 / -1; min-height: 0; flex-direction: row; gap: 12px; padding: 16px; }
