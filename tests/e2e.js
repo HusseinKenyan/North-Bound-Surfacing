@@ -44,11 +44,12 @@ async function run(name, fn) {
     await page.click('.nbs-step[data-step="1"] [data-next]');
     await page.click('[data-value="Not sure"]');
     await page.click('[data-value="3-6 months"]');
+    await page.click('[data-value="£5,000 - £10,000"]');
     await page.fill('#nbs-postcode', 'NOTAPOSTCODE');
-    await page.click('.nbs-step[data-step="4"] [data-next]');
-    assert.ok(await page.isVisible('.nbs-step[data-step="4"] .nbs-err'), 'postcode error not shown');
+    await page.click('.nbs-step[data-step="5"] [data-next]');
+    assert.ok(await page.isVisible('.nbs-step[data-step="5"] .nbs-err'), 'postcode error not shown');
     await page.fill('#nbs-postcode', 'SK8 1AA');
-    await page.click('.nbs-step[data-step="4"] [data-next]');
+    await page.click('.nbs-step[data-step="5"] [data-next]');
     await page.fill('#nbs-name', 'A');
     await page.fill('#nbs-phone', '12345');
     await page.fill('#nbs-email', 'not-an-email');
@@ -66,8 +67,9 @@ async function run(name, fn) {
     await page.click('.nbs-step[data-step="1"] [data-next]');
     await page.click('[data-value="Medium (3-4 cars)"]');
     await page.click('[data-value="Within 1-3 months"]');
+    await page.click('[data-value="£10,000 - £20,000"]');
     await page.fill('#nbs-postcode', 'm337ab');
-    await page.click('.nbs-step[data-step="4"] [data-next]');
+    await page.keyboard.press('Enter');
     await page.fill('#nbs-name', 'Test Person');
     await page.fill('#nbs-phone', '07123 456789');
     await page.fill('#nbs-email', 'test@example.com');
@@ -75,14 +77,14 @@ async function run(name, fn) {
     await page.waitForFunction(() => window.__mockGhlSubmission);
     const got = await page.evaluate(() => window.__mockGhlSubmission);
     assert.deepEqual(got, {
+      xK2a9QbLs1: 'M33 7AB',                       // Where are you based?
+      Pq81mZr0Tn: 'Resin, Paved Edging',           // What are you looking to have installed
+      aB7cD3eF9g: 'Medium (3-4 cars)',             // Roughly how big is your area?
+      Hh4Jk2Lm8N: 'Within 1-3 months',             // When would you like the work done?
+      Zz5Yy6Xx7W: '£10,000 - £20,000',             // What is your budget?
       full_name: 'Test Person',
       phone: '+447123456789',
       email: 'test@example.com',
-      postal_code: 'M33 7AB',
-      surface_type: ['Resin', 'Paved Edging'],
-      driveway_size: 'Medium (3-4 cars)',
-      project_timeframe: 'Within 1-3 months',
-      quiz_answers: 'Services: Resin, Paved Edging\nArea size: Medium (3-4 cars)\nTimeframe: Within 1-3 months\nPostcode: M33 7AB\nOffer: 10% OFF (limited time)',
       terms_and_conditions: 'on',
     });
     await page.waitForSelector('.nbs-step[data-step="done"].is-active');

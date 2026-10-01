@@ -1,44 +1,23 @@
 <!--
-  PREVIEW ONLY: do not paste into GHL.
-  Stands in for the hidden native GHL form so the quiz → form autofill
-  can be tested locally. Field names mimic a typical GHL form.
+  TEST ONLY: never pasted into GHL.
+  A stand-in that mirrors the real hidden GHL form (#form-v-k6neyDcf): plain text
+  fields for each question, labels beside (not around) the inputs, random field names
+  for the custom questions. Proves the quiz fills it by question wording.
 -->
 <script>
-  window.NBS_CONFIG_OVERRIDE = {
-    successTimeoutMs: 1500,
-    fields: {
-      first_name: [], last_name: [],
-      full_name: ['full_name'],
-      services: ['surface_type'],
-      size: ['driveway_size'],
-      timeframe: ['project_timeframe'],
-      summary: ['quiz_answers']
-    }
-  };
+  window.NBS_CONFIG_OVERRIDE = { successTimeoutMs: 1500 };
 </script>
-<div style="max-width:560px;margin:0 auto;padding:24px 16px;font:14px/1.4 system-ui,sans-serif">
+<div id="form-v-k6neyDcf" style="max-width:560px;margin:0 auto;padding:24px 16px;font:14px/1.4 system-ui,sans-serif">
   <form id="mock-ghl-form" class="builder-form">
-    <h3 style="margin:0 0 10px">Mock GHL form (hidden)</h3>
-    <input name="full_name" data-q="full_name" placeholder="Full Name" required>
-    <input name="phone" data-q="phone" type="tel" placeholder="Phone" required>
-    <input name="email" data-q="email" type="email" placeholder="Email" required>
-    <input name="postal_code" data-q="postal_code" placeholder="Postcode">
-    <fieldset><legend>Surface type</legend>
-      <label><input type="checkbox" name="surface_type" value="Resin"> Resin</label>
-      <label><input type="checkbox" name="surface_type" value="Tarmac"> Tarmac</label>
-      <label><input type="checkbox" name="surface_type" value="Artificial Turf"> Artificial Turf</label>
-      <label><input type="checkbox" name="surface_type" value="Paved Edging"> Paved Edging</label>
-      <label><input type="checkbox" name="surface_type" value="Block Paving / Porcelain"> Block Paving / Porcelain</label>
-    </fieldset>
-    <fieldset><legend>Driveway size</legend>
-      <label><input type="radio" name="driveway_size" value="Small (1-2 cars)"> Small</label>
-      <label><input type="radio" name="driveway_size" value="Medium (3-4 cars)"> Medium</label>
-      <label><input type="radio" name="driveway_size" value="Large (5+ cars)"> Large</label>
-      <label><input type="radio" name="driveway_size" value="Not sure"> Not sure</label>
-    </fieldset>
-    <select name="project_timeframe"><option value="">Timeframe</option><option>As soon as possible</option><option>Within 1-3 months</option><option>3-6 months</option><option>Just getting prices</option></select>
-    <textarea name="quiz_answers" placeholder="Quiz answers"></textarea>
-    <label><input type="checkbox" name="terms_and_conditions" required> I agree to the terms &amp; privacy policy</label>
+    <div class="form-field-wrapper"><div class="label-wrapper"><label>Where are you based? Note: We only cover greater manchester and surrounding areas.</label></div><input type="text" name="xK2a9QbLs1" placeholder="Enter your text"></div>
+    <div class="form-field-wrapper"><div class="label-wrapper"><label>What are you looking to have installed (copy)</label></div><input type="text" name="Pq81mZr0Tn" placeholder="Enter your text"></div>
+    <div class="form-field-wrapper"><div class="label-wrapper"><label>Roughly how big is your area?</label></div><input type="text" name="aB7cD3eF9g" placeholder="Enter your text"></div>
+    <div class="form-field-wrapper"><div class="label-wrapper"><label>When would you like the work done?</label></div><input type="text" name="Hh4Jk2Lm8N" placeholder="Enter your text"></div>
+    <div class="form-field-wrapper"><div class="label-wrapper"><label>What is your budget? Note: It is highly unlikely we will be able to price your driveway for less than £5,000.</label></div><input type="text" name="Zz5Yy6Xx7W" placeholder="Enter your text"></div>
+    <div class="form-field-wrapper"><div class="label-wrapper"><label>Full name</label></div><input type="text" name="full_name" placeholder="Enter your full name"></div>
+    <div class="form-field-wrapper"><div class="label-wrapper"><label>Phone *</label></div><input type="tel" name="phone" placeholder="+1 (555) 000-0000" required></div>
+    <div class="form-field-wrapper"><div class="label-wrapper"><label>Email *</label></div><input type="email" name="email" placeholder="your@email.com" required></div>
+    <div class="form-field-wrapper"><label><input type="checkbox" name="terms_and_conditions" required> I consent to receive SMS and emails from North Bound Surfacing</label></div>
     <button type="submit">Submit</button>
   </form>
   <pre id="mock-ghl-result" style="display:none;background:#0f2a17;color:#b9f6c8;padding:14px;border-radius:10px;white-space:pre-wrap"></pre>
@@ -54,6 +33,5 @@
     pre.textContent = 'Hidden GHL form received:\n' + JSON.stringify(out, null, 2);
     pre.style.display = 'block';
     window.__mockGhlSubmission = out;
-    console.log('[mock GHL] submitted', out);
   });
 </script>

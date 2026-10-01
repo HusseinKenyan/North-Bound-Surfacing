@@ -1,30 +1,30 @@
 /*
  * Quiz ("fake form") + GHL bridge.
- * Runs the 5-step quiz, validates answers, then fills the hidden native GHL
- * form on the same page and clicks its submit button.
- * Configure the GHL field names in NBS_CONFIG below.
- * Debug: add ?nbsdebug=1 to the page URL to reveal the GHL form and list its fields.
+ * Runs the quiz, validates answers, then fills the hidden native GHL form on
+ * the same page and clicks its submit button.
+ * Which quiz answer goes into which GHL field is set in NBS_CONFIG below.
+ * Debug: add ?nbsdebug=1 to the page URL. The GHL form stays visible and a panel
+ * lists its fields, what each answer maps to, and what was written on submit.
  */
 (function () {
   /* =========================================================
-     CONFIG — edit to match your hidden GHL form.
-     Each answer can be written to one or more GHL fields.
-     Use the field's "name" (run the page with ?nbsdebug=1 to list them).
-     Leave an array empty to skip that answer.
+     CONFIG: edit to match your hidden GHL form.
+     Each answer lists where it goes, tried in order; the first match wins:
+       'label:Some text'  a GHL field whose question/label contains that text
+       'some_name'        a GHL field with that name attribute
      ========================================================= */
   var NBS_CONFIG = {
-    ghlFormSelector: '',            // leave '' to auto-detect the GHL form on the page
+    ghlFormSelector: '#form-v-k6neyDcf',   // the hidden GHL form (falls back to auto-detect if not found)
     fields: {
-      full_name:  ['full_name'],
-      first_name: ['first_name'],
-      last_name:  ['last_name'],
-      phone:      ['phone'],
-      email:      ['email'],
-      postcode:   ['postal_code'],
-      services:   [],               // e.g. ['surface_type']  (checkbox, multi-select, dropdown or text field)
-      size:       [],               // e.g. ['driveway_size']
-      timeframe:  [],               // e.g. ['project_timeframe']
-      summary:    []                // e.g. ['quiz_answers'] (a multi-line text field that receives every answer)
+      services:  ['label:What are you looking to have installed'],
+      size:      ['label:Roughly how big is your area'],
+      timeframe: ['label:When would you like the work done'],
+      budget:    ['label:What is your budget'],
+      postcode:  ['label:Where are you based', 'postal_code'],
+      full_name: ['full_name', 'label:Full name'],
+      phone:     ['phone', 'label:Phone'],
+      email:     ['email', 'label:Email'],
+      summary:   []                     // optional: a multi-line field that gets every answer, e.g. ['label:Quiz answers']
     },
     tickConsent: true,              // tick GHL's consent/terms checkbox (our form shows the consent wording)
     phoneFormat: 'e164',            // 'e164' turns 07123 456789 into +447123456789; 'raw' sends as typed
@@ -84,7 +84,7 @@
     }
     if (e.target.closest('[data-back]')) { show(Math.max(1, current - 1)); return; }
     if (e.target.closest('[data-next]')) {
-      if (current === 4 && !checkPostcode()) return;
+      if (step && step.dataset.validate === 'postcode' && !checkPostcode()) return;
       show(current + 1);
     }
   });
@@ -118,7 +118,7 @@
     return ok;
   }
   document.getElementById('nbs-postcode').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') { e.preventDefault(); if (checkPostcode()) show(5); }
+    if (e.key === 'Enter') { e.preventDefault(); if (checkPostcode()) show(current + 1); }
   });
   root.querySelectorAll('.nbs-input').forEach(function (el) {
     el.addEventListener('input', function () { if (el.classList.contains('is-invalid')) setError(el, false); });
@@ -128,10 +128,8 @@
   function norm(s) { return String(s == null ? '' : s).toLowerCase().replace(/[^a-z0-9]/g, ''); }
 
   function findGhlForm() {
-    if (NBS_CONFIG.ghlFormSelector) {
-      var el = document.querySelector(NBS_CONFIG.ghlFormSelector);
-      return el && el.tagName !== 'FORM' ? (el.querySelector('form') || el) : el;
-    }
+    var el = NBS_CONFIG.ghlFormSelector && document.querySelector(NBS_CONFIG.ghlFormSelector);
+    if (el) return el.tagName === 'FORM' ? el : (el.querySelector('form') || el);
     var forms = document.querySelectorAll('form');
     for (var i = 0; i < forms.length; i++) {
       var f = forms[i];
@@ -149,24 +147,42 @@
     form.style.cssText += ';position:absolute!important;left:-10000px!important;top:0!important;width:320px!important;opacity:0!important;pointer-events:none!important;';
   }
 
+  function inputsOf(form) {
+    return [].slice.call(form.querySelectorAll('input, select, textarea')).filter(function (el) { return el.type !== 'hidden'; });
+  }
+
   function describeFields(form) {
-    var rows = [];
-    form.querySelectorAll('input, select, textarea').forEach(function (el) {
-      if (el.type === 'hidden') return;
-      rows.push({ name: el.name, 'data-q': el.getAttribute('data-q'), id: el.id, type: el.type, value: el.value, label: labelText(el) });
+    return inputsOf(form).map(function (el) {
+      return { name: el.name, id: el.id, type: el.type, value: el.type === 'checkbox' ? el.checked : el.value, label: labelText(el) };
     });
-    return rows;
   }
 
+  // The visible question for a field. GHL puts the label next to the input, not around it,
+  // so also look up a few parent levels for the field's own label.
   function labelText(el) {
-    var l = el.closest('label') || (el.id && document.querySelector('label[for="' + el.id + '"]'));
-    return l ? l.textContent.trim() : (el.getAttribute('aria-label') || el.placeholder || '');
+    var clean = function (t) { return t.replace(/\s+/g, ' ').replace(/\*\s*$/, '').trim(); };
+    var l = el.closest('label');
+    if (!l && el.id) { try { l = document.querySelector('label[for="' + CSS.escape(el.id) + '"]'); } catch (e) {} }
+    if (l) return clean(l.textContent);
+    var node = el.parentElement;
+    for (var i = 0; node && i < 4; i++, node = node.parentElement) {
+      if (node.querySelectorAll('input:not([type="hidden"]), select, textarea').length > 1) break;
+      var lab = node.querySelector('label, .label, [class*="label"]');
+      if (lab && !lab.contains(el) && clean(lab.textContent)) return clean(lab.textContent);
+    }
+    return el.getAttribute('aria-label') || el.placeholder || '';
   }
 
-  function fieldsByName(form, name) {
-    var sel = '[name="' + name + '"], [data-q="' + name + '"]';
-    var found = [].slice.call(form.querySelectorAll(sel));
-    if (!found.length) { try { found = [].slice.call(form.querySelectorAll('#' + CSS.escape(name))); } catch (e) {} }
+  // 'label:Some text' → fields whose label contains it; otherwise match name / data-q / id.
+  function findFields(form, target) {
+    if (target.indexOf('label:') === 0) {
+      var want = norm(target.slice(6));
+      return inputsOf(form).filter(function (el) {
+        return el.type !== 'checkbox' && el.type !== 'radio' && norm(labelText(el)).indexOf(want) > -1;
+      });
+    }
+    var found = [].slice.call(form.querySelectorAll('[name="' + target + '"], [data-q="' + target + '"]'));
+    if (!found.length) { try { found = [].slice.call(form.querySelectorAll('#' + CSS.escape(target))); } catch (e) {} }
     return found;
   }
 
@@ -187,9 +203,7 @@
     return targets.indexOf(norm(el.value)) > -1 || targets.indexOf(norm(labelText(el))) > -1;
   }
 
-  function writeField(form, name, value) {
-    var els = fieldsByName(form, name);
-    if (!els.length) { log('Field not found in GHL form:', name); return false; }
+  function writeField(els, name, value) {
     var list = Array.isArray(value) ? value : [value];
     var text = list.join(', ');
     var first = els[0];
@@ -229,31 +243,44 @@
     });
   }
 
+  // One line per quiz step, labelled with the step's data-label.
   function summaryText(a) {
-    return [
-      'Services: ' + a.services.join(', '),
-      'Area size: ' + (a.size || '-'),
-      'Timeframe: ' + (a.timeframe || '-'),
-      'Postcode: ' + (a.postcode || '-'),
-      'Offer: 10% OFF (limited time)'
-    ].join('\n');
+    return numbered.filter(function (s) { return s.dataset.label; }).map(function (s) {
+      var v = a[s.dataset.key];
+      return s.dataset.label + ': ' + (Array.isArray(v) ? v.join(', ') : (v || '-'));
+    }).concat('Offer: 10% OFF (limited time)').join('\n');
+  }
+
+  // For each answer, the first configured target that exists in the GHL form.
+  function resolveTargets(form) {
+    var out = {};
+    Object.keys(NBS_CONFIG.fields).forEach(function (key) {
+      var targets = NBS_CONFIG.fields[key] || [];
+      for (var i = 0; i < targets.length; i++) {
+        var els = findFields(form, targets[i]);
+        if (els.length) { out[key] = { target: targets[i], els: els }; return; }
+      }
+      out[key] = { target: targets.join(' / ') || '(not set)', els: [] };
+    });
+    return out;
   }
 
   function fillGhl(form, a) {
-    var map = NBS_CONFIG.fields;
-    var values = {
-      full_name: a.full_name, first_name: a.first_name, last_name: a.last_name,
-      phone: a.phone, email: a.email, postcode: a.postcode,
-      services: a.services, size: a.size, timeframe: a.timeframe, summary: summaryText(a)
-    };
+    var values = {};
+    Object.keys(a).forEach(function (k) { values[k] = a[k]; });
+    values.summary = summaryText(a);
+    var map = resolveTargets(form);
+    var report = [];
     Object.keys(map).forEach(function (key) {
-      (map[key] || []).forEach(function (name) {
-        if (values[key] == null || values[key] === '') return;
-        writeField(form, name, values[key]);
-      });
+      var v = values[key], m = map[key];
+      if (v == null || v === '' || (Array.isArray(v) && !v.length)) return;
+      if (!m.els.length) { report.push([key, m.target, 'NOT FOUND']); log('No GHL field for', key, '→', m.target); return; }
+      writeField(m.els, m.target, v);
+      report.push([key, m.target, Array.isArray(v) ? v.join(', ') : v]);
     });
     if (NBS_CONFIG.tickConsent) tickConsent(form);
     log('Filled GHL form:', describeFields(form));
+    debugPanel(form, report);
   }
 
   function submitGhl(form) {
@@ -334,19 +361,48 @@
     }, 150);
   });
 
+  /* ---------- Debug panel (?nbsdebug=1) ---------- */
+  function debugPanel(form, written) {
+    if (!NBS_CONFIG.debug) return;
+    var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var row = function (cells, bold) {
+      return '<tr>' + cells.map(function (c) { return '<td style="padding:4px 6px;border-top:1px solid #333;vertical-align:top;' + (bold ? 'font-weight:700' : '') + '">' + esc(c) + '</td>'; }).join('') + '</tr>';
+    };
+    var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><b>NBS debug</b>' +
+      '<button type="button" onclick="this.closest(\'#nbs-debug\').remove()" style="background:#333;color:#fff;border:0;border-radius:4px;padding:2px 8px;cursor:pointer">×</button></div>';
+    if (!form) {
+      html += '<p style="color:#ff8a80">No GHL form found (selector ' + esc(NBS_CONFIG.ghlFormSelector || 'auto') + ').</p>';
+    } else {
+      var map = resolveTargets(form);
+      html += '<p style="margin:0 0 4px">Quiz answer → GHL field</p><table style="border-collapse:collapse;width:100%">' +
+        Object.keys(map).map(function (k) {
+          var m = map[k];
+          return row([k, m.els.length ? '✓ ' + labelText(m.els[0]) : (NBS_CONFIG.fields[k] || []).length ? '✗ not found (' + m.target + ')' : '– not used']);
+        }).join('') + '</table>';
+      html += '<p style="margin:8px 0 4px">All fields in the GHL form</p><table style="border-collapse:collapse;width:100%">' +
+        row(['label', 'name', 'type'], true) + describeFields(form).map(function (f) { return row([f.label, f.name, f.type]); }).join('') + '</table>';
+      if (written) {
+        html += '<p style="margin:8px 0 4px">Written on submit</p><table style="border-collapse:collapse;width:100%">' +
+          written.map(function (w) { return row([w[0], w[2]]); }).join('') + '</table>';
+      }
+    }
+    var box = document.getElementById('nbs-debug') || document.body.appendChild(document.createElement('div'));
+    box.id = 'nbs-debug';
+    box.style.cssText = 'position:fixed;right:10px;bottom:10px;z-index:2147483647;width:min(440px,94vw);max-height:70vh;overflow:auto;' +
+      'background:#111;color:#eee;font:12px/1.4 system-ui,sans-serif;padding:10px;border:2px solid #F89E1B;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.5)';
+    box.innerHTML = html;
+  }
+
   /* ---------- Init ---------- */
   function initForm(tries) {
     var form = findGhlForm();
     if (form) {
       hideGhlForm(form);
-      if (NBS_CONFIG.debug) {
-        console.log('[NBS] GHL form found. Its fields (use "name" in NBS_CONFIG.fields):');
-        console.table(describeFields(form));
-      }
+      if (NBS_CONFIG.debug) { console.table(describeFields(form)); debugPanel(form); }
       return;
     }
     if (tries > 0) setTimeout(function () { initForm(tries - 1); }, 500);
-    else if (NBS_CONFIG.debug) console.warn('[NBS] No GHL form found on the page.');
+    else if (NBS_CONFIG.debug) { console.warn('[NBS] No GHL form found on the page.'); debugPanel(null); }
   }
   initForm(20);
   show(1);
