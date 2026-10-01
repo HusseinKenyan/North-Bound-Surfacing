@@ -44,7 +44,7 @@ async function run(name, fn) {
     await page.click('.nbs-step[data-step="1"] [data-next]');
     await page.click('[data-value="Not sure"]');
     await page.click('[data-value="3-6 months"]');
-    await page.click('[data-value="£5,000 - £10,000"]');
+    await page.click('[data-value="£6,000 - £10,000"]');
     await page.fill('#nbs-postcode', 'NOTAPOSTCODE');
     await page.click('.nbs-step[data-step="5"] [data-next]');
     assert.ok(await page.isVisible('.nbs-step[data-step="5"] .nbs-err'), 'postcode error not shown');

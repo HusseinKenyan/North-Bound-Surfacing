@@ -208,7 +208,6 @@
   .nbs-header-logo { height: 44px !important; }
   .nbs-hero { padding: 44px 0 30px; }
   .nbs-tiles-5 { grid-template-columns: repeat(6, 1fr); }
-  .nbs-tiles-3 { grid-template-columns: repeat(3, 1fr); }
   .nbs-tiles-5 .nbs-tile { grid-column: span 2; }
   .nbs-tiles-5 .nbs-tile:nth-child(4) { grid-column: 2 / span 2; }
   .nbs-tiles-5 .nbs-tile:nth-child(5) { grid-column: 4 / span 2; }
@@ -223,9 +222,7 @@
   .nbs-sticky { display: none; }
 }
 @container (max-width: 759px) {
-  .nbs-tiles-5 .nbs-tile:last-child,
-  .nbs-tiles-3 .nbs-tile:last-child { grid-column: 1 / -1; min-height: 0; flex-direction: row; gap: 12px; padding: 16px; }
-  .nbs-tiles-5 .nbs-tile:last-child svg,
-  .nbs-tiles-3 .nbs-tile:last-child svg { width: 36px; height: 36px; }
+  .nbs-tiles-5 .nbs-tile:last-child { grid-column: 1 / -1; min-height: 0; flex-direction: row; gap: 12px; padding: 16px; }
+  .nbs-tiles-5 .nbs-tile:last-child svg { width: 36px; height: 36px; }
 }
 @container (max-width: 380px) { .nbs-header-rating { display: none; } }
