@@ -20,7 +20,7 @@
       size:      ['label:Roughly how big is your area'],
       timeframe: ['label:When would you like the work done'],
       budget:    ['label:What is your budget'],
-      postcode:  ['label:Where are you based', 'postal_code'],
+      area:      ['label:Where are you based', 'city'],
       full_name: ['full_name', 'label:Full name'],
       phone:     ['phone', 'label:Phone'],
       email:     ['email', 'label:Email'],
@@ -84,13 +84,12 @@
     }
     if (e.target.closest('[data-back]')) { show(Math.max(1, current - 1)); return; }
     if (e.target.closest('[data-next]')) {
-      if (step && step.dataset.validate === 'postcode' && !checkPostcode()) return;
+      if (step && step.dataset.validate === 'area' && !checkArea()) return;
       show(current + 1);
     }
   });
 
   /* ---------- Validation ---------- */
-  var RE_POSTCODE = /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i;
   var RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   function setError(input, bad) {
@@ -107,18 +106,16 @@
     if (v.charAt(0) === '0') return '+44' + v.slice(1);
     return v;
   }
-  function formatPostcode(v) {
-    v = v.replace(/\s+/g, '').toUpperCase();
-    return v.length > 3 ? v.slice(0, -3) + ' ' + v.slice(-3) : v;
-  }
-  function checkPostcode() {
-    var el = document.getElementById('nbs-postcode');
-    var ok = setError(el, !RE_POSTCODE.test(el.value.trim()));
-    if (ok) { el.value = formatPostcode(el.value); answers.postcode = el.value; }
+  // Any area name is fine (no postcode format to trip over); just not blank.
+  function checkArea() {
+    var el = document.getElementById('nbs-area');
+    var v = el.value.trim().replace(/\s+/g, ' ');
+    var ok = setError(el, v.length < 2);
+    if (ok) { el.value = v; answers.area = v; }
     return ok;
   }
-  document.getElementById('nbs-postcode').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') { e.preventDefault(); if (checkPostcode()) show(current + 1); }
+  document.getElementById('nbs-area').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); if (checkArea()) show(current + 1); }
   });
   root.querySelectorAll('.nbs-input').forEach(function (el) {
     el.addEventListener('input', function () { if (el.classList.contains('is-invalid')) setError(el, false); });

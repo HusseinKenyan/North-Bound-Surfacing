@@ -37,7 +37,7 @@ async function run(name, fn) {
     }
   });
 
-  await run('quiz rejects a bad postcode, phone and email', async () => {
+  await run('quiz rejects a blank area, bad phone and bad email', async () => {
     const page = await newPage();
     await page.goto(url('tests/preview-test.html'));
     await page.click('[data-value="Resin"]');
@@ -45,10 +45,10 @@ async function run(name, fn) {
     await page.click('[data-value="Not sure"]');
     await page.click('[data-value="3-6 months"]');
     await page.click('[data-value="£6,000 - £10,000"]');
-    await page.fill('#nbs-postcode', 'NOTAPOSTCODE');
+    await page.fill('#nbs-area', '  ');
     await page.click('.nbs-step[data-step="5"] [data-next]');
-    assert.ok(await page.isVisible('.nbs-step[data-step="5"] .nbs-err'), 'postcode error not shown');
-    await page.fill('#nbs-postcode', 'SK8 1AA');
+    assert.ok(await page.isVisible('.nbs-step[data-step="5"] .nbs-err'), 'area error not shown');
+    await page.fill('#nbs-area', 'Didsbury');
     await page.click('.nbs-step[data-step="5"] [data-next]');
     await page.fill('#nbs-name', 'A');
     await page.fill('#nbs-phone', '12345');
@@ -68,7 +68,7 @@ async function run(name, fn) {
     await page.click('[data-value="Medium (3-4 cars)"]');
     await page.click('[data-value="Within 1-3 months"]');
     await page.click('[data-value="£10,000 - £20,000"]');
-    await page.fill('#nbs-postcode', 'm337ab');
+    await page.fill('#nbs-area', '  Sale ');
     await page.keyboard.press('Enter');
     await page.fill('#nbs-name', 'Test Person');
     await page.fill('#nbs-phone', '07123 456789');
@@ -77,7 +77,7 @@ async function run(name, fn) {
     await page.waitForFunction(() => window.__mockGhlSubmission);
     const got = await page.evaluate(() => window.__mockGhlSubmission);
     assert.deepEqual(got, {
-      xK2a9QbLs1: 'M33 7AB',                       // Where are you based?
+      xK2a9QbLs1: 'Sale',                          // Where are you based?
       Pq81mZr0Tn: 'Resin, Paved Edging',           // What are you looking to have installed
       aB7cD3eF9g: 'Medium (3-4 cars)',             // Roughly how big is your area?
       Hh4Jk2Lm8N: 'Within 1-3 months',             // When would you like the work done?
